@@ -4,6 +4,7 @@ import Input from "./UI/Input";
 import Button from "./UI/Button";
 import iconBack from "../images/back-arrow_icon.png";
 import axios from "axios";
+import {useHistory} from "react-router-dom";
 
 
 function RegistrationForm() {
@@ -11,6 +12,10 @@ function RegistrationForm() {
     const [surname,setSurname]=useState("");
     const [login,setLogin]=useState("");
     const [password,setPassword]=useState("");
+    const history=useHistory()
+    function switchLogin(){
+        history.push("/")
+    }
 
     function clearAllInput():void{
         setName("");
@@ -29,7 +34,7 @@ function RegistrationForm() {
                 <div className="RF_iconBack"
                  onClick={(event => {
                      event.preventDefault();
-
+                     switchLogin();
                  })}
                 >
                     <img src={iconBack} alt={"arrow back"}/>

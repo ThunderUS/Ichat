@@ -1,16 +1,20 @@
-import React, {useState} from "react";
+import React, { useState} from "react";
 import Input from "./UI/Input";
 import Button from "./UI/Button";
 import "../style/loginForm.scss";
 import CostumeCheckBox from "./UI/CostumeCheckBox";
 import PasswordIcon from "./UI/PasswordIcon";
-
-
+import {useHistory} from "react-router-dom";
 
 function LoginForm(){
     const [showPassword,setShowPassword]=useState(false);
     const [loginValue,setLoginValue]=useState("");
     const [passwordValue,setPasswordValue]=useState("");
+    const history=useHistory()
+    function switchReg(){
+        history.push("/reg")
+    }
+
     return(
         <div className={"LF_wrapper"}>
             <form>
@@ -58,7 +62,7 @@ function LoginForm(){
                     <Button className={"LF_btn"}
                             onClick={e => {
                                 e.preventDefault();
-
+                                switchReg();
                             }}
                     >Registration</Button>
                 </div>

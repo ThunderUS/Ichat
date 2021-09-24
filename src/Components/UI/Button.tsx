@@ -6,14 +6,16 @@ interface IProps {
     disabled?:boolean;
 }
 
-function Button(props:IProps) {
+function Button (props:IProps) {
+    console.log("Render");
     return (
         <div>
             <button
                 {...props}
+
             >{props.children}</button>
         </div>
     );
 }
 
-export default Button;
+export default React.memo(Button);
