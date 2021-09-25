@@ -15,13 +15,17 @@ function LoginForm(){
     function switchReg(){
         history.push("/reg")
     }
-
+    function clearerInput():void{
+        setLoginValue("");
+        setPasswordValue("");
+    }
     return(
         <div className={"LF_wrapper"}>
             <form>
                 <Input
                     className={"LF_Input"}
                     placeholder={"Login"}
+                    value={loginValue}
                     maxLength={15}
                     onChange={(e:React.FormEvent<HTMLInputElement>)=>{
                         setLoginValue(e.currentTarget.value);
@@ -31,6 +35,7 @@ function LoginForm(){
                     <Input
                     className={"LF_Input"}
                     placeholder={"Password"}
+                    value={passwordValue}
                     type={showPassword
                         ?"text"
                         :"password"}
@@ -67,7 +72,7 @@ function LoginForm(){
                             if(await LFSchema.isValid(formData)){
                                 console.log("everything good")
                             } else{
-
+                                clearerInput();
                                 alert(`Wrong Data. 
                                 Login should be min 4 - max 15 symbols.
                                 Password should be min 8 - max 15 symbols. `);
