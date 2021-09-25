@@ -7,7 +7,6 @@ interface IProps {
 }
 
 function Button (props:IProps) {
-    console.log("Render");
     return (
         <div>
             <button

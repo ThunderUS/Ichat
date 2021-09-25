@@ -5,6 +5,7 @@ import "../style/loginForm.scss";
 import CostumeCheckBox from "./UI/CostumeCheckBox";
 import PasswordIcon from "./UI/PasswordIcon";
 import {useHistory} from "react-router-dom";
+import {LFSchema} from "../Validations/LFValidation"
 
 function LoginForm(){
     const [showPassword,setShowPassword]=useState(false);
@@ -57,6 +58,22 @@ function LoginForm(){
                     <Button
                         className={"LF_btn"}
                         disabled={!(loginValue && passwordValue)}
+                        onClick={async(e)=>{
+                            e.preventDefault();
+                            const formData={
+                                login:loginValue,
+                                password:passwordValue,
+                            }
+                            if(await LFSchema.isValid(formData)){
+                                console.log("everything good")
+                            } else{
+
+                                alert(`Wrong Data. 
+                                Login should be min 4 - max 15 symbols.
+                                Password should be min 8 - max 15 symbols. `);
+
+                            }
+                        }}
                     >Login</Button>
 
                     <Button className={"LF_btn"}
