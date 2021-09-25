@@ -5,6 +5,7 @@ import Button from "./UI/Button";
 import iconBack from "../images/back-arrow_icon.png";
 import axios from "axios";
 import {useHistory} from "react-router-dom";
+import {RFSchema} from "../Validations/RFValidation";
 
 
 function RegistrationForm() {
@@ -93,14 +94,27 @@ function RegistrationForm() {
                         > Clear all</Button>
                         <Button className={"RF_buttons"}
                                 disabled={!(name && surname && login && password)}
-                                onClick={e => {
+                                onClick={async e => {
                                     e.preventDefault();
-                                    axios.post("http://localhost:9999/reg",{
+                                    const formData={
                                         name,
                                         surname,
                                         login,
                                         password
-                                    });
+                                    }
+                                    if(await RFSchema.isValid(formData)){
+                                        console.log("everything good")
+                                       await axios.post("http://localhost:9999/reg",formData);
+                                    } else{
+
+                                        alert(`Wrong Data. 
+                                Name should be min 3 - max 15 symbols.  
+                                SecondName should be min 3 - max 15 symbols.      
+                                Login should be min 4 - max 15 symbols.
+                                Password should be min 8 - max 15 symbols. `);
+                                    clearAllInput();
+                                    }
+
                                 }}
                         > Submit</Button>
                     </div>
