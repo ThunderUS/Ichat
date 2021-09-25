@@ -18,6 +18,16 @@
     border: 2px solid black;
     border-radius: 10px;
   }
+  &_completed{
+    margin-top: 26%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    &_link{
+      margin-top: 2%;
+    }
+  }
   &_registration{
     margin: 0 auto 8px auto;
     text-align: center;
@@ -36,7 +46,7 @@
       transition: .2s;
     }
   }
-  &_nameSurname_wrapper,&_phoneEmail_wrapper{
+  &_nameSurname_wrapper,&_LoginPassword_wrapper{
     display: flex;
     flex-direction: column;
     justify-content:space-around;

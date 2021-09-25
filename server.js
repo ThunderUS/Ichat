@@ -17,7 +17,10 @@ app.get("/reg",(req,res)=>{
 });
 app.post("/reg",(req,res)=>{
   console.log(req.body);
-  res.send();
+  res.send({
+    id:Math.random()*10,
+    status: 200
+  });
 });
 
 app.listen(9999,(err)=>{
