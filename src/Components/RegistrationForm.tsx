@@ -8,6 +8,7 @@ import {useHistory, Link} from "react-router-dom";
 import {RFSchema} from "../Validations/RFValidation";
 import * as yup from "yup";
 import axios from "axios";
+import {json} from "express";
 
 interface RegData {
     name: string,
@@ -59,7 +60,7 @@ function RegistrationForm() {
         const valid =await validationData(formData, RFSchema, ERR_MESSAGE);
         if (valid){
             console.log("data will send")
-            const data=await axios.post("http://localhost:9999/reg", formData)
+            const data=await axios.post("http://localhost:8080/user", formData);
             if (data.status===200){
                 setServAnswer(true);
             }
