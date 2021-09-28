@@ -3,6 +3,7 @@ import express from "express";
 //import {Server} from "socket.io";
 import cors from "cors";
 import userControl from "./controller/user.controller.js"
+import Log from "./controller/log.js";
 
 
 const PORT = process.env.PORT || 8080;
@@ -24,6 +25,6 @@ app.listen(PORT, (err) => {
   if (err) {
     console.log(err);
   } else {
-    console.log("working on port " + PORT);
+    Log.setLog(`Server start on ${PORT}`);
   }
 });
