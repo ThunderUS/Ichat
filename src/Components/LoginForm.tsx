@@ -6,6 +6,7 @@ import CostumeCheckBox from "./UI/CostumeCheckBox";
 import PasswordIcon from "./UI/PasswordIcon";
 import {useHistory} from "react-router-dom";
 import {LFSchema} from "../Validations/LFValidation"
+import axios from "axios";
 
 function LoginForm(){
     const [showPassword,setShowPassword]=useState(false);
@@ -70,7 +71,16 @@ function LoginForm(){
                                 password:passwordValue,
                             }
                             if(await LFSchema.isValid(formData)){
-                                console.log("everything good")
+                                const response=await axios.post("http://localhost:8080/login",formData);
+                                if(response.data==="LIPC"){
+                                    alert("Wrong Password");
+                                    clearerInput();
+                                }else if (response.data==="ILPC"){
+                                    alert("Wrong Login");
+                                    clearerInput();
+                                } else{
+                                    console.log("all good");
+                                }
                             } else{
                                 clearerInput();
                                 alert(`Wrong Data. 
