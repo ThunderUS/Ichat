@@ -8,7 +8,7 @@ import {useHistory, Link} from "react-router-dom";
 import {RFSchema} from "../Validations/RFValidation";
 import * as yup from "yup";
 import axios from "axios";
-import {json} from "express";
+
 
 interface RegData {
     name: string,
