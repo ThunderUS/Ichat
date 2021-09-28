@@ -12,7 +12,19 @@ class UserController{
     async getLoginsUsers(req,res){
 
     }
-    async getUserByLogin(req,res){
+    async loginUser(req,res){
+        const {login,password}=req.body;
+        const userID = await pool.query("SELECT id FROM users WHERE login=$1",[login]);
+        if (userID.rows[0]){
+            const userPAS= await pool.query("SELECT aups FROM aups WHERE user_id=$1",[userID.rows[0]["id"]]);
+            if(userPAS.rows[0]["aups"]===password){
+                res.json("LPC");
+            }else {
+                res.json("LIPC");
+            }
+        } else{
+            res.json("ILPC")
+        }
 
     }
 }
