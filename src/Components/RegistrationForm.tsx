@@ -75,6 +75,8 @@ function RegistrationForm() {
             const data = await axios.post("http://localhost:8080/user", formData);
             if (data.status === 200) {
                 setServAnswer(true);
+            } else {
+                alert("500 Error on the server side or network problem.")
             }
         }
     }
