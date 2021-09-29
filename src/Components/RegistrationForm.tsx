@@ -10,9 +10,6 @@ import * as yup from "yup";
 import axios from "axios";
 
 
-
-
-
 interface RegData {
     name: string,
     surname: string,
@@ -20,28 +17,27 @@ interface RegData {
     password: string
 }
 
-
 function RegistrationForm() {
     const [name, setName] = useState("");
     const [surname, setSurname] = useState("");
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
     const [servAnswer, setServAnswer] = useState(false);
+    const [loginCheck, setLoginCheck] = useState<boolean>();
     const history = useHistory();
-    const [usersLogin,setUsersLogin]=useState([]);
+    const [usersLogin, setUsersLogin] = useState([]);
 
-    useEffect(()=>{
-      axios.get("http://localhost:8080/user/list").then((response)=>{
-           setUsersLogin(response.data.map((el: { [s: string]: unknown; } | ArrayLike<unknown>)=>{
-               return Object.values(el);
-           }).reduce((flat: string | any[], current: any)=>{
-               return flat.concat (current);
-           }));
+    useEffect(() => {
+        axios.get("http://localhost:8080/user/list").then((response) => {
+            setUsersLogin(response.data.map((el: { [s: string]: unknown; } | ArrayLike<unknown>) => {
+                return Object.values(el);
+            }).reduce((flat: string | any[], current: any) => {
+                return flat.concat(current);
+            }));
         });
 
-    },[]);
+    }, []);
 
-    console.log(usersLogin);
     const ERR_MESSAGE: string = `              Wrong Data. 
                                 Name should be min 3 - max 15 symbols.  
                                 SecondName should be min 3 - max 15 symbols.      
@@ -72,12 +68,12 @@ function RegistrationForm() {
             return false;
         }
     }
-    async function submitData(formData:RegData){
-        const valid =await validationData(formData, RFSchema, ERR_MESSAGE);
-        if (valid){
-            console.log("data will send")
-            const data=await axios.post("http://localhost:8080/user", formData);
-            if (data.status===200){
+
+    async function submitData(formData: RegData) {
+        const valid = await validationData(formData, RFSchema, ERR_MESSAGE);
+        if (valid) {
+            const data = await axios.post("http://localhost:8080/user", formData);
+            if (data.status === 200) {
                 setServAnswer(true);
             }
         }
@@ -137,11 +133,24 @@ function RegistrationForm() {
                               <Input className={"RF_inputs"}
                                      value={login}
                                      placeholder={"Nickname..."}
+                                     onBlur={(e) => {
+                                         if (e.currentTarget.value) {
+                                             // @ts-ignore
+                                             if (usersLogin.includes(e.currentTarget?.value)) {
+                                                 e.currentTarget.style.border = "1.5px solid red";
+                                                 setLoginCheck(false);
+                                             } else {
+                                                 e.currentTarget.style.border = "1.5px solid green";
+                                                 setLoginCheck(true);
+                                             }
+                                         }
+                                     }
+                                     }
+
                                      onChange={(e: React.FormEvent<HTMLInputElement>) => {
                                          setLogin(e.currentTarget.value);
                                      }}/>
-                            </div>
-                            <div>
+
                               <Input className={"RF_inputs"}
                                      type={"password"}
                                      value={password}
@@ -167,15 +176,15 @@ function RegistrationForm() {
                                         }}
                             > Clear all</Button>
                             <Button className={"RF_buttons"}
-                                    disabled={!(name && surname && login && password)}
+                                    disabled={!(name && surname && login && password && loginCheck)}
                                     onClick={async e => {
                                         e.preventDefault();
                                         const formData = {
-                                                            name,
-                                                            surname,
-                                                            login,
-                                                            password
-                                                         }
+                                            name,
+                                            surname,
+                                            login,
+                                            password
+                                        }
                                         await submitData(formData);
 
                                     }}

@@ -7,6 +7,7 @@ interface IProps {
     type?:string;
     value?:string;
     maxLength?:number;
+    onBlur?:(e:React.FormEvent<HTMLInputElement>)=>void;
 }
 function Input(props:IProps) {
     return (

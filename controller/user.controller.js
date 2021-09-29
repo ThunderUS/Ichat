@@ -1,5 +1,5 @@
-import pool from "../db.js";
-import Log from "./log.js"
+import pool from "../server/db.js";
+import Log from "../server/log.js"
 
 class UserController {
   async createUser(req, res) {
@@ -11,10 +11,10 @@ class UserController {
         .query("INSERT INTO aups (aups,user_id) values ($1,$2) RETURNING *", [password, newPerson["rows"][0]["id"]]);
       res.json(newPerson);
       Log.setLog(`Registered new user: ${name} ${surname}`);
-    }
+    }else{
     res.status(500).send("error");
     Log.setLog(`Error registration DATA is not correct (name:${name}, surname:${surname}, login:${login}, aups:${password})`)
-  }
+  }}
 
   async getLoginsUsers(req, res) {
       const allLogins= await pool
