@@ -19,6 +19,7 @@ class UserController {
   async getLoginsUsers(req, res) {
       const allLogins= await pool
         .query("SELECT login FROM users");
+
       res.json(allLogins.rows);
       Log.setLog(`Request all USERS for registration`);
   }

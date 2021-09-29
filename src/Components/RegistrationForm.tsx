@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "../style/RegistrationForm.scss";
 import Input from "./UI/Input";
 import Button from "./UI/Button";
@@ -8,6 +8,9 @@ import {useHistory, Link} from "react-router-dom";
 import {RFSchema} from "../Validations/RFValidation";
 import * as yup from "yup";
 import axios from "axios";
+
+
+
 
 
 interface RegData {
@@ -24,8 +27,21 @@ function RegistrationForm() {
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
     const [servAnswer, setServAnswer] = useState(false);
-    const history = useHistory()
+    const history = useHistory();
+    const [usersLogin,setUsersLogin]=useState([]);
 
+    useEffect(()=>{
+      axios.get("http://localhost:8080/user/list").then((response)=>{
+           setUsersLogin(response.data.map((el: { [s: string]: unknown; } | ArrayLike<unknown>)=>{
+               return Object.values(el);
+           }).reduce((flat: string | any[], current: any)=>{
+               return flat.concat (current);
+           }));
+        });
+
+    },[]);
+
+    console.log(usersLogin);
     const ERR_MESSAGE: string = `              Wrong Data. 
                                 Name should be min 3 - max 15 symbols.  
                                 SecondName should be min 3 - max 15 symbols.      
