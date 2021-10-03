@@ -1,4 +1,5 @@
 import  db from "pg";
+
 const Pool=db.Pool;
 const pool= new Pool({
   user:"postgres",

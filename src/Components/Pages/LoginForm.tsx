@@ -1,11 +1,11 @@
 import React, { useState} from "react";
-import Input from "./UI/Input";
-import Button from "./UI/Button";
-import "../style/loginForm.scss";
-import CostumeCheckBox from "./UI/CostumeCheckBox";
-import PasswordIcon from "./UI/PasswordIcon";
+import Input from "../UI/Input";
+import Button from "../UI/Button";
+import "../../style/loginForm.scss";
+import CostumeCheckBox from "../UI/CostumeCheckBox";
+import PasswordIcon from "../UI/PasswordIcon";
 import {useHistory} from "react-router-dom";
-import {LFSchema} from "../Validations/LFValidation"
+import {LFSchema} from "../../Validations/LFValidation"
 import axios from "axios";
 
 function LoginForm(){

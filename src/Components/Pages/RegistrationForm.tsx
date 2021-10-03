@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from "react";
-import "../style/RegistrationForm.scss";
-import Input from "./UI/Input";
-import Button from "./UI/Button";
-import iconBack from "../images/back-arrow_icon.png";
+import "../../style/RegistrationForm.scss";
+import Input from "../UI/Input";
+import Button from "../UI/Button";
+import iconBack from "../../images/back-arrow_icon.png";
 //import axios from "axios";
 import {useHistory, Link} from "react-router-dom";
-import {RFSchema} from "../Validations/RFValidation";
+import {RFSchema} from "../../Validations/RFValidation";
 import * as yup from "yup";
 import axios from "axios";
 
@@ -188,7 +188,6 @@ function RegistrationForm() {
                                             password
                                         }
                                         await submitData(formData);
-
                                     }}
                             > Submit</Button>
                           </div>
