@@ -1,5 +1,5 @@
 import React from 'react';
-import "../../style/LoginInfo.scss"
+import "../../../style/LoginInfo.scss"
 
 function LoginInfo() {
     return (

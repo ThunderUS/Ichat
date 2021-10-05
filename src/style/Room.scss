@@ -1,0 +1,14 @@
+.Room{
+  width: 185px;
+  min-height: 72px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: #c4c4c4;
+  margin: 6px 0;
+ span{
+   display: block;
+   margin-top: 5px;
+   margin-left: 3px;
+   margin-bottom: 5px;
+ }
+}
