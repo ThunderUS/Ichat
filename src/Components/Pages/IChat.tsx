@@ -1,11 +1,10 @@
 import React from 'react';
+import "../../style/IChat.scss"
 
 function IChat() {
     return (
-        <div>
-            <h1>
-                working.
-            </h1>
+        <div className={"IChat"}>
+
         </div>
     );
 }

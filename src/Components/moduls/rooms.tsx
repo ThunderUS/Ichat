@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Rooms(props) {
+function Rooms() {
     return (
         <div></div>
     );

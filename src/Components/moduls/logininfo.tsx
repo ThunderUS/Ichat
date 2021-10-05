@@ -1,6 +1,6 @@
 import React from 'react';
 
-function LoginInfo(props) {
+function LoginInfo() {
     return (
         <div></div>
     );

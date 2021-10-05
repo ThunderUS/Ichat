@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Sender(props) {
+function Sender() {
     return (
         <div></div>
     );
