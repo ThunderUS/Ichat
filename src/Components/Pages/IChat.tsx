@@ -1,11 +1,11 @@
 import React from 'react';
 import "../../style/IChat.scss"
-import Rooms from "../moduls/IChat/Rooms";
+import Sender from "../moduls/IChat/Sender";
 
 function IChat() {
     return (
         <div className={"IChat"}>
-            <Rooms/>
+            <Sender/>
         </div>
     );
 }

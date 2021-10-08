@@ -1,0 +1,43 @@
+.Sender{
+  width: 526px;
+  height: 70px;
+  background-color: #c4c4c4;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &_text{
+    width: 444px;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+    padding: 3px;
+    resize: none;
+    scrollbar-width:none;
+    font-size: 17px;
+    &::-webkit-scrollbar{
+      width: 0;
+    }
+
+  }
+  &_button{
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 25px;
+    background-color: #f8f8f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 37px;
+    font-weight: bold;
+    padding-bottom: 6px;
+    &:hover{
+      cursor: pointer;
+      transform: scale(1.05);
+    }
+  }
+}
