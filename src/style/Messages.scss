@@ -1,15 +1,30 @@
 .Message{
   display: inline-block;
   width: 313px;
-  min-height: 53px;
+  min-height: auto;
   border: 1px solid black;
   background-color: #c4c4c4;
   margin: 5px;
   padding: 5px;
+  &_nickName{
+    &--right{
+      font-weight: 700;
+      text-decoration: underline;
+      text-align: right;
+    }
+    &--left{
+      font-weight: 700;
+      text-decoration: underline;
+      text-align: left;
+    }
+  }
 }
 .left{
   border-radius: 5px 5px 5px 0;
+  align-self: flex-start;
+
 }
 .right{
   border-radius: 5px 5px 0 5px;
+  align-self: flex-end;
 }

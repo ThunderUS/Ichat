@@ -4,12 +4,12 @@ import Message from "../../message";
 function Chats() {
     return (
         <div className={"Chat"}>
-            <Message/>
-            <Message/>
-            <Message/>
-            <Message/>
-            <Message/>
-            <Message/>
+            <Message className={"left"}/>
+            <Message className={"right"}/>
+            <Message className={"left"}/>
+            <Message className={"right"}/>
+            <Message className={"left"}/>
+            <Message className={"right"}/>
         </div>
     );
 }
