@@ -43,16 +43,30 @@
   }
 }
 @media only screen and (max-width: 770px) , (max-height: 721px){
-.Sender{
-  width: 363px;
-  height: 52px;
-  &_button{
-    width: 40px;
-    height: 40px;
-  }
-  &_text{
-    width: 308px;
-    height: 40px;
+  .Sender{
+    width: 363px;
+    height: 52px;
+    &_button{
+      width: 40px;
+      height: 40px;
+    }
+    &_text{
+      width: 308px;
+      height: 40px;
+    }
   }
 }
+@media only screen and(max-width: 556px),(max-height: 597px) {
+  .Sender{
+    width: 272px;
+    height: 50px;
+    &_text{
+      width: 220px;
+      height: 35px;
+    }
+    &_button{
+      width: 35px;
+      height: 35px;
+    }
+  }
 }

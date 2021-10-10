@@ -39,3 +39,17 @@
     }
   }
 }
+@media only screen and(max-width: 556px),(max-height: 597px) {
+  .LoginInfo{
+    width: 90px;
+    height: 50px;
+    span{
+      font-size: 15px;
+    }
+    &_create{
+      margin-top: 0;
+      width: 25px;
+      height: 25px;
+    }
+  }
+}

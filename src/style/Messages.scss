@@ -28,3 +28,9 @@
   border-radius: 5px 5px 0 5px;
   align-self: flex-end;
 }
+
+@media only screen and(max-width: 556px),(max-height: 597px) {
+  .Message{
+    width: 261px;
+  }
+}

@@ -5,7 +5,7 @@ function Room() {
     return (
         <div className={"Room"}>
             <span>Room:ID</span>
-            <span>Users:thun, tpokf, pfpfl.</span>
+            <span>tpokf/pfpfl</span>
         </div>
     );
 }
