@@ -20,3 +20,11 @@
     height: 610px;
   }
 }
+@media only screen and (max-width: 405px){
+  .IChat{
+    width: 319px;
+    height: 567px;
+    padding: 1px;
+    margin: 0;
+  }
+}
