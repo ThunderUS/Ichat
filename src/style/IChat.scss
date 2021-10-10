@@ -5,6 +5,12 @@
   border-radius: 10px;
   background-color: rgba(255,253,253,0.82);
   padding: 10px;
-  margin: 5px;
+  margin: 10px;
+  display: flex;
 }
-
+@media only screen and (max-width: 770px) , (max-height: 721px){
+  .IChat {
+    width: 555px;
+    height: 596px;
+  }
+}

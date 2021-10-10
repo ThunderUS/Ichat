@@ -1,5 +1,6 @@
 .Sender{
-  width: 526px;
+  margin: 5px;
+  width: 517px;
   height: 70px;
   background-color: #c4c4c4;
   border: 1px solid black;
@@ -40,4 +41,18 @@
       transform: scale(1.05);
     }
   }
+}
+@media only screen and (max-width: 770px) , (max-height: 721px){
+.Sender{
+  width: 363px;
+  height: 52px;
+  &_button{
+    width: 40px;
+    height: 40px;
+  }
+  &_text{
+    width: 308px;
+    height: 40px;
+  }
+}
 }

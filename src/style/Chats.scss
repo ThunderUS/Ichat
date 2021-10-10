@@ -1,6 +1,7 @@
 .Chat{
-  width: 526px;
-  height: 623px;
+  margin: 5px;
+  width: 517px;
+  height: 616px;
   border: 1px solid black;
   border-radius: 10px;
   background-color: #f8f8f8;
@@ -12,4 +13,10 @@
   &::-webkit-scrollbar{
     width: 0;
   }
+}
+@media only screen and (max-width: 770px) , (max-height: 721px){
+ .Chat{
+   width: 363px;
+   height: 509px;
+ }
 }

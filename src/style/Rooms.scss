@@ -1,6 +1,6 @@
 .Rooms{
   width: 209px;
-  height: 540px;
+  height: 575px;
   border: 1px solid black;
   border-radius: 10px;
   margin: 5px;
@@ -12,5 +12,11 @@
   scrollbar-width: none;
   &::-webkit-scrollbar{
     width: 0;
+  }
+}
+@media (max-width: 770px) , (max-height: 721px){
+  .Rooms{
+    width: 150px;
+    height: 479px;
   }
 }
