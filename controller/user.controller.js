@@ -11,17 +11,17 @@ class UserController {
         .query("INSERT INTO aups (aups,user_id) values ($1,$2) RETURNING *", [password, newPerson["rows"][0]["id"]]);
       res.json(newPerson);
       Log.setLog(`Registered new user: ${name} ${surname}`);
-    }else{
-    res.status(500).send("error");
-    Log.setLog(`Error registration DATA is not correct (name:${name}, surname:${surname}, login:${login}, aups:${password})`)
-  }}
+    } else {
+      res.status(500).send("error");
+      Log.setLog(`Error registration DATA is not correct (name:${name}, surname:${surname}, login:${login}, aups:${password})`)
+    }
+  }
 
   async getLoginsUsers(req, res) {
-      const allLogins= await pool
-        .query("SELECT login FROM users");
-
-      res.json(allLogins.rows);
-      Log.setLog(`Request all USERS for registration`);
+    const allLogins = await pool
+      .query("SELECT login FROM users");
+    res.json(allLogins.rows);
+    Log.setLog(`Request all USERS for registration`);
   }
 
   async loginUser(req, res) {
