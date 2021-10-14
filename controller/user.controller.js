@@ -32,7 +32,8 @@ class UserController {
       const userPAS = await pool
         .query("SELECT aups FROM aups WHERE user_id=$1", [userID.rows[0]["id"]]);
       if (userPAS.rows[0]["aups"] === password) {
-        res.json("LPC");
+        const user= await pool.query("SELECT * FROM users WHERE id=$1",[userID.rows[0]["id"]])
+        res.json(user.rows[0]);
         Log.setLog(`${login} has logined in successfully!!`);
       } else {
         Log.setLog(`${login} wrong password`);

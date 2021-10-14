@@ -7,19 +7,25 @@ import PasswordIcon from "../UI/PasswordIcon";
 import {useHistory} from "react-router-dom";
 import {LFSchema} from "../../Validations/LFValidation"
 import axios from "axios";
+import {useDispatch} from "react-redux";
 
 function LoginForm(){
     const [showPassword,setShowPassword]=useState(false);
     const [loginValue,setLoginValue]=useState("");
     const [passwordValue,setPasswordValue]=useState("");
-    const history=useHistory()
+    const history=useHistory();
+    const dispatch=useDispatch();
+
+
     function switchReg(){
         history.push("/reg")
     }
+
     function clearerInput():void{
         setLoginValue("");
         setPasswordValue("");
     }
+
     return(
         <div className={"LF_wrapper"}>
             <form>
@@ -79,7 +85,8 @@ function LoginForm(){
                                     alert("Wrong Login");
                                     clearerInput();
                                 } else{
-                                    console.log("all good");
+                                    dispatch({type:"USER_CHANGE", payload:response.data})
+                                    history.push("/chat");
                                 }
                             } else{
                                 clearerInput();
