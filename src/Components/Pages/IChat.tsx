@@ -18,7 +18,7 @@ function IChat() {
         <div className={"IChat"}>
             <div className="IChat_left">
                 <LoginInfo name={store.name} surname={store.surname}/>
-                <Rooms/>
+                <Rooms login={store.login}/>
             </div>
             <div className="IChat_right">
                 <Chats/>
