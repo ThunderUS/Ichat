@@ -1,32 +1,49 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import "../../../style/Rooms.scss"
-//import Room from "../../Room";
 import axios from "axios";
+import Room from "../../Room";
 
 
 interface IRooms {
-        login:string,
+    login: string,
 }
 
-function Rooms(props:IRooms) {
-        let test1: any[]=[];
-        const rooms=getRooms(props.login);
-        async function getRooms(login:string){
-            const res= await axios.post("http://localhost:8080/rooms",{
-                    login
-            });
-            return res;
-        }
-        rooms.then(date => {
-                let test=date.data;
-                test.map((el:any)=>{
-                    test1.push(el)  ;
-                })
-        })
-        console.log(test1)
-    return (
-        <div  className={"Rooms"}>
+type TArrayRoomsUser = {
+    id: number,
+    users: string
+}
 
+function Rooms(props: IRooms) {
+    const [arrayRoomsUser, setArrayRoomsUser] = useState<TArrayRoomsUser[]>([]);
+    useEffect(() => {
+        getRooms(props.login).then(r => r);
+    }, [props.login])
+
+    async function getRooms(login: string) {
+        await axios.post("http://localhost:8080/rooms", {
+            login
+        }).then((promise) => {
+            promise.data.map((el: any) => {
+                setArrayRoomsUser(prevState => {
+                    if (prevState.find(item => item.id === el.id)) {
+                        return prevState;
+                    } else {
+                        return [...prevState, el]
+                    }
+                })
+                return null;
+            })
+        });
+    }
+
+    return (
+        <div className={"Rooms"}>
+            {
+                arrayRoomsUser.map((el) => {
+                    return <Room key={el.id} roomInfo={el} currentUserNickname={props.login}/>;
+                })
+            }
+            
         </div>
     );
 }
