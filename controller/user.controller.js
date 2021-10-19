@@ -1,9 +1,10 @@
 import pool from "../server/db.js";
 import Log from "../server/log.js"
 
+
 class UserController {
   async createUser(req, res) {
-    try{
+    try {
       const {name, surname, login, password} = req.body;
       if (name && login && surname && password) {
         const newPerson = await pool
@@ -16,26 +17,24 @@ class UserController {
         res.status(500).send("error");
         Log.setLog(`Error registration DATA is not correct (name:${name}, surname:${surname}, login:${login}, aups:${password})`)
       }
-    }
-    catch (e) {
-      Log.setLog("error in createUser: "+e)
+    } catch (e) {
+      Log.setLog("error in createUser: " + e)
     }
   }
 
   async getLoginsUsers(req, res) {
-   try{
-     const allLogins = await pool
-       .query("SELECT login FROM users");
-     res.json(allLogins.rows);
-     Log.setLog(`Request all USERS for registration`);
-   }
-   catch (e){
-     Log.setLog("error in getLoginsUsers: "+e);
-   }
+    try {
+      const allLogins = await pool
+        .query("SELECT login FROM users");
+      res.json(allLogins.rows);
+      Log.setLog(`Request all USERS for registration`);
+    } catch (e) {
+      Log.setLog("error in getLoginsUsers: " + e);
+    }
   }
 
   async loginUser(req, res) {
-    try{
+    try {
       const {login, password} = req.body;
       const userID = await pool
         .query("SELECT id FROM users WHERE login=$1", [login]);
@@ -43,7 +42,7 @@ class UserController {
         const userPAS = await pool
           .query("SELECT aups FROM aups WHERE user_id=$1", [userID.rows[0]["id"]]);
         if (userPAS.rows[0]["aups"] === password) {
-          const user= await pool.query("SELECT * FROM users WHERE id=$1",[userID.rows[0]["id"]])
+          const user = await pool.query("SELECT * FROM users WHERE id=$1", [userID.rows[0]["id"]])
           res.json(user.rows[0]);
           Log.setLog(`${login} has logined in successfully!!`);
         } else {
@@ -54,23 +53,37 @@ class UserController {
         Log.setLog(`${login} wrong login`);
         res.json("ILPC")
       }
-    }
-    catch (e){
+    } catch (e) {
       Log.setLog(`error in loginUser: ${e}`)
     }
   }
 
-  async getRooms(req,res){
-    try{
-      const {login}=req.body;
-      const rooms = await pool.query(`SELECT * FROM rooms WHERE users LIKE $1`,["%"+login+"%"]);
+  async getRooms(req, res) {
+    try {
+      const {login} = req.body;
+      const rooms = await pool.query(`SELECT *
+                                      FROM rooms
+                                      WHERE users LIKE $1`, ["%" + login + "%"]);
       res.json(rooms.rows);
-    }
-    catch (e){
+    } catch (e) {
       res.json(e)
-      console.log(`error in getRooms: ${e}`);
+      Log.setLog(`error in getRooms: ${e}`);
     }
 
+  }
+
+  async getChats(req, res) {
+    try {
+      const {Select} = req.body;
+      if (Select === 0 || Select === undefined) {
+        throw  new SyntaxError("RoomID is not correct")
+      }
+      const chats = await pool.query(`${Select}`);
+      res.json(chats.rows);
+    } catch (e) {
+      res.json(e)
+      Log.setLog(`error in getChats: ${e}`);
+    }
   }
 }
 

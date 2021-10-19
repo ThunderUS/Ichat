@@ -4,14 +4,14 @@ import Chats from "../moduls/IChat/Chats";
 import LoginInfo from "../moduls/IChat/LoginInfo";
 import Rooms from "../moduls/IChat/Rooms";
 import Sender from "../moduls/IChat/Sender";
-import { useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
 
 
 function IChat() {
-    const history=useHistory();
-    const store:any=useSelector(state=>state)
-    if (store.id===0){
+    const history = useHistory();
+    const store: any = useSelector(state => state)
+    if (store.id === 0) {
         history.push("/");
     }
     return (
@@ -21,7 +21,7 @@ function IChat() {
                 <Rooms login={store.login}/>
             </div>
             <div className="IChat_right">
-                <Chats/>
+                <Chats roomID={1}/>
                 <Sender/>
             </div>
         </div>

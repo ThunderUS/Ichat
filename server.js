@@ -17,11 +17,11 @@ try {
   app.post("/login", userControl.loginUser);
   app.get("/user/list", userControl.getLoginsUsers);
   app.post("/user", userControl.createUser);
-  app.post("/rooms",userControl.getRooms);
+  app.post("/rooms", userControl.getRooms);
+  app.post("/chats", userControl.getChats);
 } catch (e) {
   Log.setLog(`${e}`);
 }
-
 
 
 app.listen(PORT, (err) => {

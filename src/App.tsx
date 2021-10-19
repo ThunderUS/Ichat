@@ -11,10 +11,12 @@ const defaultState = {
     id: 0,
     name: "",
     surname: "",
-    login: ""
+    login: "",
+    roomID: 0
 }
 
-const reducer = (state = defaultState, action: any) => {
+
+const reducerUserInformation = (state = defaultState, action: any) => {
     switch (action.type) {
         case "USER_CHANGE":
             return {
@@ -22,13 +24,16 @@ const reducer = (state = defaultState, action: any) => {
                 id: action.payload.id,
                 name: action.payload.name,
                 surname: action.payload.surname,
-                login: action.payload.login
+                login: action.payload.login,
+                roomID: action.payload.roomID,
             };
         default:
             return state;
     }
 }
-const store = createStore(reducer);
+
+const store = createStore(reducerUserInformation);
+
 
 function App() {
     return (

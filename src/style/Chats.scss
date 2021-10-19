@@ -1,4 +1,4 @@
-.Chat{
+.Chat {
   margin: 5px;
   width: 517px;
   height: 616px;
@@ -6,28 +6,50 @@
   border-radius: 10px;
   background-color: #f8f8f8;
   display: flex;
-  flex-direction: column;
+
   padding: 5px 0 5px 0;
   overflow-y: auto;
   scrollbar-width: none;
-  &::-webkit-scrollbar{
+
+  &_wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &::-webkit-scrollbar {
     width: 0;
   }
 }
-@media only screen and (max-width: 770px) , (max-height: 721px){
- .Chat{
-   width: 363px;
-   height: 509px;
- }
+
+.empty_room {
+  width: 200px;
+  height: 50px;
+  margin-top: 279px;
+  font-size: 16px;
+  justify-items: center;
+  align-self: center;
+  border: 1px solid black;
+  padding-top: 7px;
+  text-align: center;
 }
-@media only screen and(max-width: 556px),(max-height: 597px) {
-  .Chat{
+
+@media only screen and (max-width: 770px), (max-height: 721px) {
+  .Chat {
+    width: 363px;
+    height: 509px;
+  }
+}
+
+@media only screen and(max-width: 556px), (max-height: 597px) {
+  .Chat {
     width: 272px;
     height: 524px;
   }
 }
-@media only screen and (max-width: 405px){
-  .Chat{
+
+@media only screen and (max-width: 405px) {
+  .Chat {
     margin: 1px 1px 1px 5px;
     width: 250px;
     height: 510px;
