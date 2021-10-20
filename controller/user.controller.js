@@ -74,11 +74,11 @@ class UserController {
 
   async getChats(req, res) {
     try {
-      const {Select} = req.body;
-      if (Select === 0 || Select === undefined) {
-        throw  new SyntaxError("RoomID is not correct")
+      const {select} = req.body;
+      if (select === 0 || select === undefined) {
+        throw  new SyntaxError("wrong sql correct");
       }
-      const chats = await pool.query(`${Select}`);
+      const chats = await pool.query(`${select}`);
       res.json(chats.rows);
     } catch (e) {
       res.json(e)

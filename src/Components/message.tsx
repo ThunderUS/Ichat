@@ -1,15 +1,21 @@
 import React from 'react';
 import "../style/Messages.scss"
 
-interface IMessage{
-    className:"left"|"right",
+interface IMessage {
+    message: string,
+    login: string,
+    currentUser: string
 }
 
-function Message(props:IMessage) {
+function Message(props: IMessage) {
+    const className = props.currentUser === props.login
+        ? "right"
+        : "left"
     return (
-        <div className={`Message ${props.className}`}>
-            <div className={`Message_nickName--${props.className}`}>Thunder:</div>
-            <span >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, aliquam deleniti dicta doloribus earum excepturi obcaecati qui sed vero voluptatibus! Ab dolor ducimus laborum molestiae odit recusandae rem repellat voluptatem. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusamus accusantium culpa dolore eos expedita facere fugiat id ipsa, optio placeat qui repellendus sit? Ad aspernatur assumenda dolorem harum quis. </span>
+        <div className={`Message ${className}`}>
+            <div className={`Message_nickName--${className}`}>{props.login}
+            </div>
+            <span>{props.message}</span>
         </div>
     );
 }

@@ -27,6 +27,11 @@ const reducerUserInformation = (state = defaultState, action: any) => {
                 login: action.payload.login,
                 roomID: action.payload.roomID,
             };
+        case "ROOM_ID":
+            return {
+                ...state,
+                roomID: action.payload.roomID
+            };
         default:
             return state;
     }

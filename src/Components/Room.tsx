@@ -1,5 +1,6 @@
 import React from 'react';
 import "../style/Room.scss"
+import {useDispatch} from "react-redux";
 
 type TRoomInfo = {
     id: number,
@@ -13,6 +14,7 @@ interface IRoom {
 
 function Room(props: IRoom) {
     const {roomInfo, currentUserNickname} = props;
+    const dispatch = useDispatch();
 
     function getUserName(roomInfo: TRoomInfo, userLogin: string) {
         return roomInfo.users
@@ -22,7 +24,13 @@ function Room(props: IRoom) {
     }
 
     return (
-        <div className={"Room"}>
+        <div onClick={() => {
+            dispatch({
+                type: "ROOM_ID", payload: {
+                    roomID: roomInfo.id,
+                }
+            })
+        }} className={"Room"}>
             <span>{getUserName(roomInfo, currentUserNickname)}</span>
         </div>
     );

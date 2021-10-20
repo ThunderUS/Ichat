@@ -1,4 +1,4 @@
-.Room{
+.Room {
   width: 185px;
   min-height: 50px;
   border: 1px solid black;
@@ -9,31 +9,41 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
- span{
-   display: block;
-   margin-top: 5px;
-   margin-left: 3px;
-   margin-bottom: 5px;
- }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  span {
+    display: block;
+    margin-top: 5px;
+    margin-left: 3px;
+    margin-bottom: 5px;
+  }
 }
-@media only screen and (max-width: 770px) , (max-height: 721px){
-  .Room{
+
+@media only screen and (max-width: 770px), (max-height: 721px) {
+  .Room {
     width: 135px;
   }
 }
-@media only screen and(max-width: 556px),(max-height: 597px) {
-  .Room{
+
+@media only screen and(max-width: 556px), (max-height: 597px) {
+  .Room {
     width: 80px;
     min-height: 56px;
-    span{
+
+    span {
       font-size: 12px;
     }
   }
 }
-@media only screen and (max-width: 405px){
-  .Room{
+
+@media only screen and (max-width: 405px) {
+  .Room {
     width: 50px;
-    span{
+
+    span {
       font-size: 10px;
     }
   }

@@ -37,10 +37,8 @@ create TABLE chats
 create TABLE chats_1
 (
     id      SERIAL PRIMARY KEY,
-    room_ID INTEGER,
-    FOREIGN KEY (room_ID) REFERENCES rooms (id),
-    user_ID INTEGER,
-    foreign key (user_ID) REFERENCES users (id),
+    login   INTEGER,
+    foreign key (login) REFERENCES users (login),
     message VARCHAR(255),
-    date    timestamp
+    date    VARCHAR(50)
 );

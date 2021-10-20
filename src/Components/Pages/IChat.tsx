@@ -21,7 +21,7 @@ function IChat() {
                 <Rooms login={store.login}/>
             </div>
             <div className="IChat_right">
-                <Chats roomID={1}/>
+                <Chats/>
                 <Sender/>
             </div>
         </div>
