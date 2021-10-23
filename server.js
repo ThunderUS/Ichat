@@ -13,7 +13,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "ichat/build")));
+app.use(express.static("ichat/build"));
 
 try {
   app.post("/login", userControl.loginUser);
