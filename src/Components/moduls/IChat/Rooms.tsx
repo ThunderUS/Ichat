@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import "../../../style/Rooms.scss"
 import axios from "axios";
 import Room from "../../Room";
+import HOST from "../../../confige/config";
 
 
 interface IRooms {
@@ -20,7 +21,7 @@ function Rooms(props: IRooms) {
     }, [props.login])
 
     async function getRooms(login: string) {
-        await axios.post("http://localhost:8080/rooms", {
+        await axios.post(HOST + "/rooms", {
             login
         }).then((promise) => {
             promise.data.map((el: any) => {
@@ -43,7 +44,7 @@ function Rooms(props: IRooms) {
                     return <Room key={el.id} roomInfo={el} currentUserNickname={props.login}/>;
                 })
             }
-            
+
         </div>
     );
 }

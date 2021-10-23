@@ -8,6 +8,7 @@ import {useHistory, Link} from "react-router-dom";
 import {RFSchema} from "../../Validations/RFValidation";
 import * as yup from "yup";
 import axios from "axios";
+import HOST from "../../confige/config";
 
 
 interface RegData {
@@ -28,7 +29,7 @@ function RegistrationForm() {
     const [usersLogin, setUsersLogin] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:8080/user/list").then((response) => {
+        axios.get(HOST + "/user/list").then((response) => {
             setUsersLogin(response.data.map((el: { [s: string]: unknown; } | ArrayLike<unknown>) => {
                 return Object.values(el);
             }).reduce((flat: string | any[], current: any) => {
@@ -72,7 +73,7 @@ function RegistrationForm() {
     async function submitData(formData: RegData) {
         const valid = await validationData(formData, RFSchema, ERR_MESSAGE);
         if (valid) {
-            const data = await axios.post("http://localhost:8080/user", formData);
+            const data = await axios.post(HOST + "/user", formData);
             if (data.status === 200) {
                 setServAnswer(true);
             } else {

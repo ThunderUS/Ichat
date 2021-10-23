@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, {useState} from "react";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
 import "../../style/loginForm.scss";
@@ -8,25 +8,26 @@ import {useHistory} from "react-router-dom";
 import {LFSchema} from "../../Validations/LFValidation"
 import axios from "axios";
 import {useDispatch} from "react-redux";
+import HOST from "../../confige/config";
 
-function LoginForm(){
-    const [showPassword,setShowPassword]=useState(false);
-    const [loginValue,setLoginValue]=useState("");
-    const [passwordValue,setPasswordValue]=useState("");
-    const history=useHistory();
-    const dispatch=useDispatch();
+function LoginForm() {
+    const [showPassword, setShowPassword] = useState(false);
+    const [loginValue, setLoginValue] = useState("");
+    const [passwordValue, setPasswordValue] = useState("");
+    const history = useHistory();
+    const dispatch = useDispatch();
 
 
-    function switchReg(){
+    function switchReg() {
         history.push("/reg")
     }
 
-    function clearerInput():void{
+    function clearerInput(): void {
         setLoginValue("");
         setPasswordValue("");
     }
 
-    return(
+    return (
         <div className={"LF_wrapper"}>
             <form>
                 <Input
@@ -34,28 +35,28 @@ function LoginForm(){
                     placeholder={"Login"}
                     value={loginValue}
                     maxLength={15}
-                    onChange={(e:React.FormEvent<HTMLInputElement>)=>{
+                    onChange={(e: React.FormEvent<HTMLInputElement>) => {
                         setLoginValue(e.currentTarget.value);
                     }}
                 />
                 <div className={"LF_inpPlusIcon"}>
                     <Input
-                    className={"LF_Input"}
-                    placeholder={"Password"}
-                    value={passwordValue}
-                    type={showPassword
-                        ?"text"
-                        :"password"}
-                    maxLength={15}
-                    onChange={(e:React.FormEvent<HTMLInputElement>)=>{
-                        setPasswordValue(e.currentTarget.value);
-                    }}
-                />
+                        className={"LF_Input"}
+                        placeholder={"Password"}
+                        value={passwordValue}
+                        type={showPassword
+                            ? "text"
+                            : "password"}
+                        maxLength={15}
+                        onChange={(e: React.FormEvent<HTMLInputElement>) => {
+                            setPasswordValue(e.currentTarget.value);
+                        }}
+                    />
                     <PasswordIcon
                         height={17}
                         width={17}
                         className={"LF_passwordIcon"}
-                        onClick={()=>{
+                        onClick={() => {
                             setShowPassword(prevState => !prevState);
                         }}
                     />
@@ -70,25 +71,25 @@ function LoginForm(){
                     <Button
                         className={"LF_btn"}
                         disabled={!(loginValue && passwordValue)}
-                        onClick={async(e)=>{
+                        onClick={async (e) => {
                             e.preventDefault();
-                            const formData={
-                                login:loginValue,
-                                password:passwordValue,
+                            const formData = {
+                                login: loginValue,
+                                password: passwordValue,
                             }
-                            if(await LFSchema.isValid(formData)){
-                                const response=await axios.post("http://localhost:8080/login",formData);
-                                if(response.data==="LIPC"){
+                            if (await LFSchema.isValid(formData)) {
+                                const response = await axios.post(HOST + "/login", formData);
+                                if (response.data === "LIPC") {
                                     alert("Wrong Password");
                                     clearerInput();
-                                }else if (response.data==="ILPC"){
+                                } else if (response.data === "ILPC") {
                                     alert("Wrong Login");
                                     clearerInput();
-                                } else{
-                                    dispatch({type:"USER_CHANGE", payload:response.data})
+                                } else {
+                                    dispatch({type: "USER_CHANGE", payload: response.data})
                                     history.push("/chat");
                                 }
-                            } else{
+                            } else {
                                 clearerInput();
                                 alert(`Wrong Data. 
                                 Login should be min 4 - max 15 symbols.
@@ -109,4 +110,5 @@ function LoginForm(){
         </div>
     );
 }
+
 export default LoginForm;

@@ -5,6 +5,7 @@ import {useSelector} from "react-redux";
 import Store from "../../types/Store";
 import axios from "axios";
 import resChats from "../../types/chats";
+import HOST from "../../../confige/config";
 
 
 function Chats() {
@@ -14,7 +15,7 @@ function Chats() {
     useEffect(() => {
         setChats([]);
         if (store.roomID !== 0 && store.roomID !== undefined) {
-            axios.post("http://localhost:8080/chats", {
+            axios.post(HOST + "/chats", {
                 select: `SELECT *
                          FROM chats_${store.roomID}`
             }).then(response => {
