@@ -13,14 +13,19 @@ const app = express();
 const __dirname = path.resolve();
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "ichat/build")));
+app.use(express.static(__dirname))
+app.use(express.static(path.join(__dirname, "build")));
 
 try {
+
   app.post("/login", userControl.loginUser);
   app.get("/user/list", userControl.getLoginsUsers);
   app.post("/user", userControl.createUser);
   app.post("/rooms", userControl.getRooms);
   app.post("/chats", userControl.getChats);
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "build", "index.html"));
+  })
 } catch (e) {
   Log.setLog(`${e}`);
 }
