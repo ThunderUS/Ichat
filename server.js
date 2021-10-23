@@ -1,7 +1,7 @@
 import express from "express";
 //import server from "http";
 //import {Server} from "socket.io";
-import * as path from "path";
+import path from "path";
 import cors from "cors";
 import userControl from "./controller/user.controller.js"
 import Log from "./server/log.js";
@@ -10,10 +10,10 @@ const PORT = process.env.PORT || 8080;
 const app = express();
 //const webServer = server.createServer(app);
 //const IO = new Server(webServer);
-
+const __dirname = path.resolve();
 app.use(cors());
 app.use(express.json());
-app.use(express.static("ichat/build"));
+app.use(express.static(path.join(__dirname, "ichat/build")));
 
 try {
   app.post("/login", userControl.loginUser);
