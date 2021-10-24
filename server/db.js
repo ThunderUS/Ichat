@@ -1,5 +1,6 @@
 import db from "pg";
 
+db.defaults.ssl = true;
 const Pool = db.Pool;
 // const pool = new Pool({
 //   user: "postgres",

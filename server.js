@@ -15,6 +15,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname))
 app.use(express.static(path.join(__dirname, "build")));
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
 
 try {
 
