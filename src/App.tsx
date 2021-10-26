@@ -12,7 +12,13 @@ const defaultState = {
     name: "",
     surname: "",
     login: "",
-    roomID: 0
+    roomID: 0,
+    message: {
+        id: 0,
+        login: "",
+        message: "",
+        date: ""
+    },
 }
 
 
@@ -31,6 +37,16 @@ const reducerUserInformation = (state = defaultState, action: any) => {
             return {
                 ...state,
                 roomID: action.payload.roomID
+            };
+        case "MESSAGE":
+            console.log(action.payload, " Case");
+            return {
+                ...state, message: {
+                    id: action.payload.id,
+                    login: action.payload.login,
+                    message: action.payload.message,
+                    date: action.payload.date
+                }
             };
         default:
             return state;

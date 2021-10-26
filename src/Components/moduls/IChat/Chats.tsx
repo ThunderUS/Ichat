@@ -6,9 +6,13 @@ import Store from "../../types/Store";
 import axios from "axios";
 import resChats from "../../types/chats";
 import HOST from "../../../confige/config";
+import chats from "../../types/chats";
 
+type TProps = {
+    message: chats,
+}
 
-function Chats() {
+function Chats(props: TProps) {
     const [chats, setChats] = useState<resChats[]>([]);
     const store: Store = useSelector((store: Store) => store);
 
@@ -33,6 +37,13 @@ function Chats() {
             })
         }
     }, [store.roomID]);
+    useEffect(() => {
+        if (props.message.message !== "" || props.message.message !== undefined) {
+            setChats((prevState) => {
+                return [...prevState, props.message];
+            })
+        }
+    }, [props.message])
     return (
         <div className={"Chat"}>
             {
@@ -41,7 +52,8 @@ function Chats() {
                     : <div className={"Chat_wrapper"}>
                         {
                             chats.map((el) => {
-                                return <Message key={el.id} message={el.message} login={el.login}
+                                return <Message key={el.id + el.message + Math.random() * 353} message={el.message}
+                                                login={el.login}
                                                 currentUser={store.login}/>;
                             })
                         }

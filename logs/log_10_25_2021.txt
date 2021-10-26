@@ -1,0 +1,10 @@
+
+10_25_2021-19:55:4 Server start on 8080
+10_25_2021-20:5:36 Thunder has logined in successfully!!
+10_25_2021-20:13:19 Thunder has logined in successfully!!
+10_25_2021-20:15:14 Thunder has logined in successfully!!
+10_25_2021-20:25:39 Thunder has logined in successfully!!
+10_25_2021-20:27:25 Test1 has logined in successfully!!
+10_25_2021-20:27:32 error in getChats: error: relation "chats_2" does not exist
+10_25_2021-20:29:2 error in getChats: error: relation "chats_2" does not exist
+10_25_2021-20:32:12 Server start on 8080
