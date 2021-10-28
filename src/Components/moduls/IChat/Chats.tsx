@@ -37,6 +37,7 @@ function Chats(props: TProps) {
             })
         }
     }, [store.roomID]);
+
     useEffect(() => {
         if (props.message.message !== "" || props.message.message !== undefined) {
             setChats((prevState) => {
@@ -44,6 +45,7 @@ function Chats(props: TProps) {
             })
         }
     }, [props.message])
+    
     return (
         <div className={"Chat"}>
             {

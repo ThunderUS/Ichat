@@ -24,12 +24,10 @@ try {
   app.post("/user", userControl.createUser);
   app.post("/rooms", userControl.getRooms);
   app.post("/chats", userControl.getChats);
-  /* todo before deploy app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "build", "index.html"));
-  })*/
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "build", "index.html"));
-  })
+
+  // app.get("*", (req, res) => {
+  //   res.sendFile(path.join(__dirname, "build", "index.html"));
+  // })
 } catch (e) {
   Log.setLog(`${e}`);
 }

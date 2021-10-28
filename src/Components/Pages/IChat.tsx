@@ -8,6 +8,7 @@ import {useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
 import chats from "../types/chats";
 import Store from "../types/Store";
+import Invite from "../moduls/IChat/Invite";
 
 
 function IChat() {
@@ -19,15 +20,17 @@ function IChat() {
         message: "",
         date: ""
     })
+    const [invite, setInvite] = useState<Boolean>(true);
+
     if (store.id === 0) {
         history.push("/");
     }
 
-
-    return (
+    return (<>
+        {invite && <Invite func={setInvite}/>}
         <div className={"IChat"}>
             <div className="IChat_left">
-                <LoginInfo name={store.name} surname={store.surname}/>
+                <LoginInfo invite={setInvite} name={store.name} surname={store.surname}/>
                 <Rooms login={store.login}/>
             </div>
             <div className="IChat_right">
@@ -41,8 +44,10 @@ function IChat() {
                     })
                 }}/>
             </div>
+
         </div>
-    );
+
+    </>);
 }
 
 export default IChat;
