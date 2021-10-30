@@ -7,6 +7,7 @@ import HOST from "../../../confige/config";
 
 interface IRooms {
     login: string,
+    update: boolean,
 }
 
 type TArrayRoomsUser = {
@@ -18,7 +19,7 @@ function Rooms(props: IRooms) {
     const [arrayRoomsUser, setArrayRoomsUser] = useState<TArrayRoomsUser[]>([]);
     useEffect(() => {
         getRooms(props.login).then(r => r);
-    }, [props.login])
+    }, [props.login, props.update])
 
     async function getRooms(login: string) {
         await axios.post(HOST + "/rooms", {

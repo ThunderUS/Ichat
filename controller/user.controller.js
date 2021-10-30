@@ -11,7 +11,7 @@ class UserController {
           .query("INSERT INTO users (name, surname,login) values ($1,$2,$3) RETURNING * ", [name, surname, login]);
         await pool
           .query("INSERT INTO aups (aups,user_id) values ($1,$2) RETURNING *", [password, newPerson["rows"][0]["id"]]);
-        res.json(newPerson);
+        res.json(200);
         Log.setLog(`Registered new user: ${name} ${surname}`);
       } else {
         res.status(500).send("error");
@@ -83,6 +83,37 @@ class UserController {
     } catch (e) {
       res.json(e)
       Log.setLog(`error in getChats: ${e}`);
+    }
+  }
+
+  async setRoom(req, res) {
+    try {
+      const {userNick, currentUser} = req.body;
+      if (userNick && currentUser) {
+        const roomType1 = await pool.query(`SELECT *
+                                            FROM rooms
+                                            WHERE users = $1 `, [`${userNick}/${currentUser}`])
+        const roomType2 = await pool.query(`SELECT *
+                                            FROM rooms
+                                            WHERE users = $1 `, [`${currentUser}/${userNick}`])
+        if (roomType1.rows.length === 0 && roomType2.rows.length === 0) {
+          const crateRoomRow = await pool.query(`INSERT
+                                                 into rooms (users)
+                                                 values ($1) RETURNING id`, [`${currentUser}/${userNick}`])
+          const req = `create TABLE chats_${crateRoomRow.rows[0].id}
+                       (
+                           id      SERIAL PRIMARY KEY,
+                           login   VARCHAR(50),
+                           message VARCHAR(255),
+                           date    VARCHAR(50)
+                       ) `
+          await pool.query(req);
+        }
+        res.json(200);
+      }
+    } catch (e) {
+      res.json(e)
+      Log.setLog(`error in setRoom: ${e}`);
     }
   }
 }

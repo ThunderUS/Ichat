@@ -24,6 +24,7 @@ try {
   app.post("/user", userControl.createUser);
   app.post("/rooms", userControl.getRooms);
   app.post("/chats", userControl.getChats);
+  app.post("/invite", userControl.setRoom);
 
   // app.get("*", (req, res) => {
   //   res.sendFile(path.join(__dirname, "build", "index.html"));

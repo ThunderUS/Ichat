@@ -4,7 +4,7 @@ import "../../../style/LoginInfo.scss"
 interface ILoginInfo {
     name: string,
     surname: string,
-    invite: Dispatch<SetStateAction<Boolean>>
+    invite: Dispatch<SetStateAction<boolean>>
 }
 
 function LoginInfo(props: ILoginInfo) {

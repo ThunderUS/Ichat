@@ -56,10 +56,11 @@
       justify-content: space-between;
 
       &-left {
-        width: 50%;
+        width: 48%;
         height: 40px;
         font-size: 20px;
         border: 0;
+        background-color: #b4b2b2;
 
         &:hover {
           cursor: pointer;
@@ -69,7 +70,7 @@
       }
 
       &-right {
-        width: 50%;
+        width: 48%;
         height: 40px;
         background-color: #82CD36;
         border: 0;
