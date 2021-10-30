@@ -1,0 +1,58 @@
+
+10_29_2021-19:20:13 Server start on 8080
+10_29_2021-19:20:55 Thunder has logined in successfully!!
+10_29_2021-19:21:12 Request all USERS for registration
+10_29_2021-19:21:14 Request all USERS for registration
+10_29_2021-19:21:55 Request all USERS for registration
+10_29_2021-19:43:11 Server start on 8080
+10_29_2021-19:44:22 Server start on 8080
+10_29_2021-19:44:38 Server start on 8080
+10_29_2021-19:46:19 Server start on 8080
+10_29_2021-19:49:43 Server start on 8080
+10_29_2021-19:50:22 Server start on 8080
+10_29_2021-19:51:13 Server start on 8080
+10_29_2021-19:51:17 error in setRoom: error: operator is not unique: unknown / unknown
+10_29_2021-19:52:15 error in setRoom: error: operator is not unique: unknown / unknown
+10_29_2021-19:53:13 error in setRoom: error: operator is not unique: unknown / unknown
+10_29_2021-19:54:0 Server start on 8080
+10_29_2021-19:55:45 Server start on 8080
+10_29_2021-19:56:46 Server start on 8080
+10_29_2021-19:58:4 Server start on 8080
+10_29_2021-19:58:44 Server start on 8080
+10_29_2021-20:0:53 Server start on 8080
+10_29_2021-20:5:5 Server start on 8080
+10_29_2021-20:15:45 Server start on 8080
+10_29_2021-20:16:6 Server start on 8080
+10_29_2021-20:16:28 Server start on 8080
+10_29_2021-20:16:33 Server start on 8080
+10_29_2021-20:16:54 Server start on 8080
+10_29_2021-20:17:0 error in setRoom: error: syntax error at or near "value"
+10_29_2021-20:17:16 Server start on 8080
+10_29_2021-20:17:19 error in setRoom: error: syntax error at or near "RETURN"
+10_29_2021-20:18:11 Server start on 8080
+10_29_2021-20:19:1 Server start on 8080
+10_29_2021-20:22:24 Server start on 8080
+10_29_2021-20:24:30 Server start on 8080
+10_29_2021-20:24:59 Server start on 8080
+10_29_2021-20:25:42 error in setRoom: error: bind message supplies 1 parameters, but prepared statement "" requires 0
+10_29_2021-20:29:34 Server start on 8080
+10_29_2021-20:29:52 error in setRoom: error: there is no unique constraint matching given keys for referenced table "users"
+10_29_2021-20:31:6 Server start on 8080
+10_29_2021-20:31:20 error in setRoom: error: there is no unique constraint matching given keys for referenced table "users"
+10_29_2021-20:31:56 Server start on 8080
+10_29_2021-20:34:34 Server start on 8080
+10_29_2021-20:35:18 Server start on 8080
+10_29_2021-20:39:24 Thunder has logined in successfully!!
+10_29_2021-20:39:41 Request all USERS for registration
+10_29_2021-20:40:30 Request all USERS for registration
+10_29_2021-20:41:12 Request all USERS for registration
+10_29_2021-20:41:28 Request all USERS for registration
+10_29_2021-20:41:55 Registered new user: Test2 Test2
+10_29_2021-20:45:30 Server start on 8080
+10_29_2021-20:45:44 Thunder has logined in successfully!!
+10_29_2021-20:46:18 Request all USERS for registration
+10_29_2021-20:47:7 Thunder has logined in successfully!!
+10_29_2021-20:51:14 error in getChats: error: relation "chats_11" does not exist
+10_29_2021-20:59:27 Request all USERS for registration
+10_29_2021-21:4:13 Server start on 8080
+10_29_2021-21:4:14 Server start on 8080

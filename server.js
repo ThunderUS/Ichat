@@ -26,9 +26,9 @@ try {
   app.post("/chats", userControl.getChats);
   app.post("/invite", userControl.setRoom);
 
-  // app.get("*", (req, res) => {
-  //   res.sendFile(path.join(__dirname, "build", "index.html"));
-  // })
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "build", "index.html"));
+  })
 } catch (e) {
   Log.setLog(`${e}`);
 }
