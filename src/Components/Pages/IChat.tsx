@@ -11,6 +11,7 @@ import Store from "../types/Store";
 import Invite from "../moduls/IChat/Invite";
 import axios from "axios";
 import HOST from "../../confige/config";
+import socket from "../../confige/Socket";
 
 
 function IChat() {
@@ -57,12 +58,19 @@ function IChat() {
             <div className="IChat_right">
                 <Chats message={message}/>
                 <Sender onClick={(value) => {
-                    setMessage({
-                        id: 0,
-                        login: store.login,
-                        message: value,
-                        date: ""
-                    })
+                    if (store.roomID !== 0) {
+                        setMessage({
+                            id: 0,
+                            login: store.login,
+                            message: value,
+                            date: ""
+                        })
+                        console.log(socket);
+                        socket.emit("send-message", value, store.login, store.roomID)
+                        
+
+                    }
+
                 }}/>
             </div>
 
