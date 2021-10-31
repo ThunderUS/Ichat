@@ -1,5 +1,5 @@
 import React from 'react';
-import "../style/Messages.scss"
+import "../../../style/Messages.scss"
 
 interface IMessage {
     message: string,

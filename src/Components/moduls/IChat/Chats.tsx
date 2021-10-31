@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import "../../../style/Chats.scss";
-import Message from "../../message";
+import Message from "./message";
 import {useSelector} from "react-redux";
 import Store from "../../types/Store";
 import axios from "axios";
@@ -45,7 +45,7 @@ function Chats(props: TProps) {
             })
         }
     }, [props.message])
-    
+
     return (
         <div className={"Chat"}>
             {

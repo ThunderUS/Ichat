@@ -3,7 +3,6 @@ import "../../style/RegistrationForm.scss";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
 import iconBack from "../../images/back-arrow_icon.png";
-//import axios from "axios";
 import {useHistory, Link} from "react-router-dom";
 import {RFSchema} from "../../Validations/RFValidation";
 import * as yup from "yup";
@@ -26,13 +25,13 @@ function RegistrationForm() {
     const [servAnswer, setServAnswer] = useState(false);
     const [loginCheck, setLoginCheck] = useState<boolean>();
     const history = useHistory();
-    const [usersLogin, setUsersLogin] = useState([]);
+    const [usersLogin, setUsersLogin] = useState<string[]>([]);
 
     useEffect(() => {
         axios.get(HOST + "/user/list").then((response) => {
             setUsersLogin(response.data.map((el: { [s: string]: unknown; } | ArrayLike<unknown>) => {
                 return Object.values(el);
-            }).reduce((flat: string | any[], current: any) => {
+            }).reduce((flat: string, current: string) => {
                 return flat.concat(current);
             }));
         });
@@ -136,10 +135,9 @@ function RegistrationForm() {
                               <Input className={"RF_inputs"}
                                      value={login}
                                      placeholder={"Nickname..."}
-                                     onBlur={(e) => {
+                                     onBlur={(e: React.FormEvent<HTMLInputElement>) => {
                                          if (e.currentTarget.value) {
-                                             // @ts-ignore
-                                             if (usersLogin.includes(e.currentTarget?.value)) {
+                                             if (usersLogin.includes(e.currentTarget.value)) {
                                                  e.currentTarget.style.border = "1.5px solid red";
                                                  setLoginCheck(false);
                                              } else {

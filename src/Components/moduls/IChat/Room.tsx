@@ -1,5 +1,5 @@
 import React from 'react';
-import "../style/Room.scss"
+import "../../../style/Room.scss"
 import {useDispatch} from "react-redux";
 
 type TRoomInfo = {

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import "../../../style/Rooms.scss"
 import axios from "axios";
-import Room from "../../Room";
+import Room from "./Room";
 import HOST from "../../../confige/config";
 
 
@@ -25,7 +25,7 @@ function Rooms(props: IRooms) {
         await axios.post(HOST + "/rooms", {
             login
         }).then((promise) => {
-            promise.data.map((el: any) => {
+            promise.data.map((el: TArrayRoomsUser) => {
                 setArrayRoomsUser(prevState => {
                     if (prevState.find(item => item.id === el.id)) {
                         return prevState;
@@ -41,7 +41,7 @@ function Rooms(props: IRooms) {
     return (
         <div className={"Rooms"}>
             {
-                arrayRoomsUser.map((el) => {
+                arrayRoomsUser.map((el: TArrayRoomsUser) => {
                     return <Room key={el.id} roomInfo={el} currentUserNickname={props.login}/>;
                 })
             }
