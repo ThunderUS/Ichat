@@ -5,6 +5,7 @@ import path from "path";
 import cors from "cors";
 import userControl from "./controller/user.controller.js"
 import Log from "./server/log.js";
+import pool from "./server/db.js";
 
 
 const PORT = process.env.PORT || 8080;
@@ -43,8 +44,22 @@ try {
 try {
   io.on("connection", socket => {
     console.log(socket.id)
-    socket.on("send-message", (values, login, id) => {
+    socket.on("send-message", async (values, login, id) => {
       console.log(values, login, id);
+      const nowDate = new Date();
+      const todayTemplate = `${nowDate
+        .getMonth() + 1}/${nowDate
+        .getDate()}/${nowDate
+        .getFullYear()} ${nowDate
+        .getHours()}:${nowDate
+        .getMinutes()}:${nowDate
+        .getSeconds()}`
+      console.log(todayTemplate);
+      const tableName = `INSERT INTO chats_${id} (login, message, date)
+                         values ($1, $2, $3)
+                         RETURNING * `;
+      const dbData = await pool.query(tableName, [login, values, todayTemplate]);
+      console.log(dbData.rows[0])
     })
   })
 
