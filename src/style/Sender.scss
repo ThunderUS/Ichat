@@ -1,4 +1,4 @@
-.Sender{
+.Sender {
   margin: 5px;
   width: 517px;
   height: 70px;
@@ -9,7 +9,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  &_text{
+
+  &_text {
     width: 444px;
     height: 50px;
     border: 1px solid black;
@@ -17,14 +18,17 @@
     background-color: #f8f8f8;
     padding: 3px;
     resize: none;
-    scrollbar-width:none;
+    scrollbar-width: none;
     font-size: 17px;
-    &::-webkit-scrollbar{
+    outline: none;
+
+    &::-webkit-scrollbar {
       width: 0;
     }
 
   }
-  &_button{
+
+  &_button {
     width: 50px;
     height: 50px;
     border: 1px solid black;
@@ -36,45 +40,54 @@
     font-size: 37px;
     font-weight: bold;
     padding-bottom: 6px;
-    &:hover{
+
+    &:hover {
       cursor: pointer;
       transform: scale(1.05);
     }
   }
 }
-@media only screen and (max-width: 770px) , (max-height: 721px){
-  .Sender{
+
+@media only screen and (max-width: 770px), (max-height: 721px) {
+  .Sender {
     width: 363px;
     height: 52px;
-    &_button{
+
+    &_button {
       width: 40px;
       height: 40px;
     }
-    &_text{
+
+    &_text {
       width: 308px;
       height: 40px;
     }
   }
 }
-@media only screen and(max-width: 556px),(max-height: 597px) {
-  .Sender{
+
+@media only screen and(max-width: 556px), (max-height: 597px) {
+  .Sender {
     width: 272px;
     height: 50px;
-    &_text{
+
+    &_text {
       width: 220px;
       height: 35px;
     }
-    &_button{
+
+    &_button {
       width: 35px;
       height: 35px;
     }
   }
 }
-@media only screen and (max-width: 405px){
-  .Sender{
+
+@media only screen and (max-width: 405px) {
+  .Sender {
     width: 250px;
     height: 46px;
-    &_text{
+
+    &_text {
       width: 200px;
     }
   }
