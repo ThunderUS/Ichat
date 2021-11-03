@@ -1,0 +1,50 @@
+
+11_2_2021-19:36:38 Server start on 8080
+11_2_2021-19:43:10 Server start on 8080
+11_2_2021-19:43:11 User connected: IusvV8NVk8MWFS4iAAAB
+11_2_2021-19:44:45 Thunder has login in successfully!!
+11_2_2021-19:47:1 Server start on 8080
+11_2_2021-19:47:2 User connected: L7xzUetmYVu_3jxDAAAB
+11_2_2021-19:47:56 Server start on 8080
+11_2_2021-19:47:56 User connected: cpHSxF96hsg5AFb1AAAB
+11_2_2021-19:50:46 Server start on 8080
+11_2_2021-19:50:47 User connected: l_W7zgGYg161PsQIAAAB
+11_2_2021-19:55:47 Server start on 8080
+11_2_2021-19:55:48 User connected: 6-Rx5iOTmIKHTCIUAAAB
+11_2_2021-19:59:17 Server start on 8080
+11_2_2021-19:59:18 User connected: qrFN0HBAkn4lgATPAAAB
+11_2_2021-19:59:30 User connected: VOa5ZX6lL72D2yPpAAAD
+11_2_2021-19:59:41 Test1 has login in successfully!!
+11_2_2021-20:11:0 error in getChats: error: relation "chats_2" does not exist
+11_2_2021-20:11:4 error in getChats: error: relation "chats_2" does not exist
+11_2_2021-20:32:51 Server start on 8080
+11_2_2021-20:32:52 User connected: qL2-sITf6cpf3q9yAAAB
+11_2_2021-20:32:52 User connected: 4JttGyySxr_OKDKCAAAD
+11_2_2021-20:32:56 User connected: MNgYjJaEA4QDQ9yBAAAF
+11_2_2021-20:33:5 Test2 has login in successfully!!
+11_2_2021-20:33:18 error in getChats: error: relation "chats_2" does not exist
+11_2_2021-20:33:21 error in getChats: error: relation "chats_2" does not exist
+11_2_2021-20:37:24 Server start on 8080
+11_2_2021-20:37:25 User connected: WOsb8pLvWfH3lbkdAAAD
+11_2_2021-20:37:25 User connected: ITVRKSsEtDeKj1iyAAAE
+11_2_2021-20:37:25 User connected: 1898gSvtpx9xOXK9AAAF
+11_2_2021-20:39:14 Server start on 8080
+11_2_2021-20:39:14 User connected: 1tz-qNoZBHkfBR_-AAAE
+11_2_2021-20:39:14 User connected: d2EJpVS7VdWl4AyvAAAD
+11_2_2021-20:39:14 User connected: eUVxxMt8iq6-ibvlAAAF
+11_2_2021-20:39:51 error in getChats: error: relation "chats_2" does not exist
+11_2_2021-20:40:18 error in getChats: error: relation "chats_2" does not exist
+11_2_2021-20:40:19 error in getChats: error: relation "chats_2" does not exist
+11_2_2021-20:40:38 error in getChats: error: relation "chats_2" does not exist
+11_2_2021-20:40:53 error in getChats: error: relation "chats_2" does not exist
+11_2_2021-20:41:40 error in getChats: error: relation "chats_2" does not exist
+11_2_2021-20:41:46 error in getChats: error: relation "chats_2" does not exist
+11_2_2021-20:44:35 error in getChats: error: relation "chats_2" does not exist
+11_2_2021-20:46:37 error in getChats: error: relation "chats_2" does not exist
+11_2_2021-20:46:41 User connected: x09SPLMJjnEzE0tQAAAH
+11_2_2021-20:46:48 Test2 has login in successfully!!
+11_2_2021-20:47:0 Request all USERS for registration
+11_2_2021-21:28:52 User connected: 38tqfrG72BAR8ng2AAAJ
+11_2_2021-21:29:0 Thunder has login in successfully!!
+11_2_2021-21:29:9 User connected: gY8LEEE8YmVM2AUNAAAL
+11_2_2021-21:29:20 Test1 has login in successfully!!
