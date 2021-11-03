@@ -7,7 +7,8 @@ import userControl from "./controller/user.controller.js"
 import Log from "./server/log.js";
 import pool from "./server/db.js";
 
-
+let DBRowMessage = {};
+let userSenderRoomID = 0;
 const PORT = process.env.PORT || 8080;
 const app = express();
 const webServer = createServer(app);
@@ -43,9 +44,8 @@ try {
 
 try {
   io.on("connection", socket => {
-    console.log(socket.id)
+    Log.setLog(`User connected: ${socket.id}`);
     socket.on("send-message", async (values, login, id) => {
-      console.log(values, login, id);
       const nowDate = new Date();
       const todayTemplate = `${nowDate
         .getMonth() + 1}/${nowDate
@@ -53,14 +53,19 @@ try {
         .getFullYear()} ${nowDate
         .getHours()}:${nowDate
         .getMinutes()}:${nowDate
-        .getSeconds()}`
-      console.log(todayTemplate);
+        .getSeconds()}`;
+
       const tableName = `INSERT INTO chats_${id} (login, message, date)
                          values ($1, $2, $3)
                          RETURNING * `;
       const dbData = await pool.query(tableName, [login, values, todayTemplate]);
-      console.log(dbData.rows[0])
-    })
+      DBRowMessage = dbData.rows[0];
+      userSenderRoomID = id;
+      socket.to(userSenderRoomID).emit("receive-message", DBRowMessage, userSenderRoomID);
+    });
+    socket.on("join-room", (roomID) => {
+      socket.join(roomID);
+    });
   })
 
 } catch (e) {

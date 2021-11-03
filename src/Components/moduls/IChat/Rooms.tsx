@@ -1,13 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {Dispatch, SetStateAction, useEffect, useState} from 'react';
 import "../../../style/Rooms.scss"
 import axios from "axios";
 import Room from "./Room";
 import HOST from "../../../confige/config";
+import socket from "../../../confige/Socket";
 
 
 interface IRooms {
     login: string,
     update: boolean,
+    newMessage: number[];
+    setNewMessage: Dispatch<SetStateAction<number[]>>
 }
 
 type TArrayRoomsUser = {
@@ -42,7 +45,14 @@ function Rooms(props: IRooms) {
         <div className={"Rooms"}>
             {
                 arrayRoomsUser.map((el: TArrayRoomsUser) => {
-                    return <Room key={el.id} roomInfo={el} currentUserNickname={props.login}/>;
+                    socket.emit("join-room", el.id);
+
+                    return <Room newMessage={props.newMessage.some(test => test === el.id)}
+                                 key={el.id}
+                                 roomInfo={el}
+                                 currentUserNickname={props.login}
+                                 setNewMessage={props.setNewMessage}
+                    />;
                 })
             }
 

@@ -17,6 +17,7 @@ import socket from "../../confige/Socket";
 function IChat() {
     const history = useHistory();
     const store: Store = useSelector((state: Store) => state)
+    const [newMessageDifferentRoom, setNewMessageDifferentRoom] = useState<number[]>([]);
     const [message, setMessage] = useState<chats>({
         id: 0,
         login: store.login,
@@ -30,6 +31,16 @@ function IChat() {
         history.push("/");
     }
 
+    socket.on("receive-message", (dataMessage, userSenderRoomID) => {
+        if (userSenderRoomID === store.roomID) {
+            setMessage(dataMessage);
+        } else {
+            setNewMessageDifferentRoom(prevState => {
+                return [...prevState, userSenderRoomID];
+            })
+            setUpdate(prevState => !prevState);
+        }
+    })
     return (<>
         {invite && <Invite onClick={(value) => {
             axios.get(HOST + "/user/list").then(res => {
@@ -53,7 +64,10 @@ function IChat() {
         <div className={"IChat"}>
             <div className="IChat_left">
                 <LoginInfo invite={setInvite} name={store.name} surname={store.surname}/>
-                <Rooms update={update} login={store.login}/>
+                <Rooms newMessage={newMessageDifferentRoom}
+                       setNewMessage={setNewMessageDifferentRoom}
+                       update={update}
+                       login={store.login}/>
             </div>
             <div className="IChat_right">
                 <Chats message={message}/>
@@ -65,9 +79,8 @@ function IChat() {
                             message: value,
                             date: ""
                         })
-                        console.log(socket);
                         socket.emit("send-message", value, store.login, store.roomID)
-                        
+
 
                     }
 

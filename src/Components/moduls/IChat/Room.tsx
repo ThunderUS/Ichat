@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Dispatch, SetStateAction} from 'react';
 import "../../../style/Room.scss"
 import {useDispatch} from "react-redux";
 
@@ -9,7 +9,9 @@ type TRoomInfo = {
 
 interface IRoom {
     roomInfo: TRoomInfo,
-    currentUserNickname: string
+    currentUserNickname: string,
+    newMessage: boolean,
+    setNewMessage: Dispatch<SetStateAction<number[]>>
 }
 
 function Room(props: IRoom) {
@@ -29,9 +31,17 @@ function Room(props: IRoom) {
                 type: "ROOM_ID", payload: {
                     roomID: roomInfo.id,
                 }
+
             })
-        }} className={"Room"}>
+            props.setNewMessage(prevState => {
+                return [...prevState.filter((el) => {
+                    return el !== roomInfo.id;
+                })]
+            })
+        }}
+             className={"Room"}>
             <span>{getUserName(roomInfo, currentUserNickname)}</span>
+            {props.newMessage && <span>!NEW!</span>}
         </div>
     );
 }
