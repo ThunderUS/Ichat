@@ -66,16 +66,19 @@
   .LoginInfo {
     margin: 1px;
     width: 55px;
-    height: 55px;
+    height: 65px;
     justify-content: flex-start;
+
+    span {
+      font-size: 12px;
+      margin-bottom: 2px;
+    }
+
+    &_create {
+      margin-top: 0;
+      width: 20px;
+      height: 20px;
+    }
   }
-  span {
-    font-size: 12px;
-    margin-bottom: 2px;
-  }
-  &_create {
-    margin-top: 0;
-    width: 20px;
-    height: 20px;
-  }
+
 }
