@@ -1,4 +1,4 @@
-.LoginInfo{
+.LoginInfo {
   margin: 5px;
   width: 209px;
   height: 110px;
@@ -9,10 +9,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  span{
+
+  span {
     font-size: 30px;
   }
-  &_create{
+
+  &_create {
     margin-top: 20px;
     height: 30px;
     width: 30px;
@@ -24,38 +26,56 @@
     justify-content: center;
     align-items: center;
     font-weight: 600;
-    &:hover{
+
+    &:hover {
       cursor: pointer;
       box-shadow: 0 0 5px 2px;
     }
   }
 }
-@media only screen and (max-width: 770px) , (max-height: 721px){
+
+@media only screen and (max-width: 770px), (max-height: 721px) {
   .LoginInfo {
     width: 150px;
     height: 81px;
-    span{
+
+    span {
       font-size: 19px;
     }
   }
 }
+
 @media only screen and(max-width: 556px) {
-  .LoginInfo{
+  .LoginInfo {
     width: 90px;
-    span{
-      font-size: 15px;
+
+    span {
+      font-size: 13px;
+      margin-bottom: 10px;
     }
-    &_create{
+
+    &_create {
       margin-top: 0;
       width: 25px;
       height: 25px;
     }
   }
 }
-@media only screen and (max-width: 405px){
-  .LoginInfo{
+
+@media only screen and (max-width: 405px) {
+  .LoginInfo {
     margin: 1px;
     width: 55px;
     height: 55px;
+    justify-content: flex-start;
+  }
+  span {
+    font-size: 12px;
+    margin-bottom: 2px;
+  }
+  &_create {
+    margin-top: 0;
+    width: 20px;
+    height: 20px;
   }
 }
