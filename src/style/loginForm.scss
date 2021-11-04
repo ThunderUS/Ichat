@@ -1,8 +1,8 @@
-.LF{
-  &_wrapper{
+.LF {
+  &_wrapper {
     width: 245px;
     height: 215px;
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -10,66 +10,78 @@
     justify-content: center;
     border: 2px black solid;
   }
-  &_Input{
+
+  &_Input {
     margin: 10px 0;
     width: 200px;
     height: 32px;
-    background-color: rgba(255,255,255,0.7);
+    background-color: rgba(255, 255, 255, 0.7);
     outline: none;
     font-weight: bold;
     font-size: 15px;
     border: 1.5px solid black;
     padding-left: 5px;
-    &:last-child{
+
+    &:last-child {
       margin-bottom: 3px;
     }
   }
-  &_btnWrapper{
+
+  &_btnWrapper {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
 
   }
-  &_btn{
+
+  &_btn {
     width: 128px;
     height: 26px;
     font-weight: bold;
     font-size: 14px;
-    border: 1px solid black ;
-    background-color: rgba(255,255,255,0.7);
+    border: 1px solid black;
+    background-color: rgba(255, 255, 255, 0.7);
     border-radius: 5px;
-    &:hover{
+
+    &:hover {
       cursor: pointer;
       box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.4);
     }
-    &:last-child{
+
+    &:last-child {
       margin-top: 10px;
     }
-    &:active{
-      background-color: rgba(255,255,255,1);
+
+    &:active {
+      background-color: rgba(255, 255, 255, 1);
     }
   }
-  &_checkbox{
+
+  &_checkbox {
     display: none;
   }
-  &_divWrapper{
+
+  &_divWrapper {
     display: flex;
     justify-content: flex-end;
-  };
-  &_span{
+  }
+;
+
+  &_span {
     display: inline-block;
     position: relative;
     width: 10px;
     height: 10px;
     border: 1px solid black;
   }
-  &_span:before{
+
+  &_span:before {
     content: "";
     position: absolute;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: block;
     width: 6px;
     height: 6px;
@@ -77,25 +89,80 @@
     opacity: 0;
     transition: .2s;
   }
-  &_checkbox:checked + span:before{
+
+  &_checkbox:checked + span:before {
     opacity: 1;
   }
-  &_span+span{
+
+  &_span + span {
     font-size: 11px;
     font-weight: 700;
   }
-  &_inpPlusIcon{
+
+  &_inpPlusIcon {
     display: flex;
     align-items: center;
     position: relative;
   }
-  &_passwordIcon{
+
+  &_passwordIcon {
     position: absolute;
-    right:3%;
-    top:40%;
-    &:hover{
+    right: 3%;
+    top: 40%;
+
+    &:hover {
       cursor: pointer;
       transform: scale(1.2);
     }
+  }
+}
+
+.Info {
+  position: absolute;
+  right: 1%;
+  top: 1%;
+
+  &_wrapper {
+    display: flex;
+    width: 246px;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid black;
+    border-radius: 5px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+
+  &_title {
+    margin-bottom: 5px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  &_text {
+    margin-bottom: 5px;
+    font-size: 16px;
+
+  }
+
+  &_hoToUse {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 246px;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+  }
+}
+
+@media (max-width: 762px) {
+  .Info {
+    display: none;
   }
 }
