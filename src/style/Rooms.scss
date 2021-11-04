@@ -1,33 +1,37 @@
-.Rooms{
+.Rooms {
   width: 209px;
   height: 575px;
   border: 1px solid black;
   border-radius: 10px;
   margin: 5px;
-  background: #e9e9e9;
+  background: #f8f8f8;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow-y: auto;
   scrollbar-width: none;
-  &::-webkit-scrollbar{
+
+  &::-webkit-scrollbar {
     width: 0;
   }
 }
-@media (max-width: 770px) , (max-height: 721px){
-  .Rooms{
+
+@media (max-width: 770px), (max-height: 721px) {
+  .Rooms {
     width: 150px;
     height: 479px;
   }
 }
+
 @media only screen and(max-width: 556px) {
-  .Rooms{
+  .Rooms {
     width: 90px;
     height: 494px;
   }
 }
-@media only screen and (max-width: 405px){
-  .Rooms{
+
+@media only screen and (max-width: 405px) {
+  .Rooms {
     width: 55px;
     height: 500px;
     margin-left: 1px;
