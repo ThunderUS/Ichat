@@ -1,41 +1,51 @@
-.Message{
+.Message {
   display: inline-block;
-  width: 313px;
+  min-width: 100px;
+  max-width: 400px;
   min-height: auto;
   border: 1px solid black;
-  background-color: #c4c4c4;
+
   margin: 5px;
   padding: 5px;
-  &_nickName{
-    &--right{
+
+  &_nickName {
+    &--right {
       font-weight: 700;
       text-decoration: underline;
       text-align: right;
     }
-    &--left{
+
+    &--left {
       font-weight: 700;
       text-decoration: underline;
       text-align: left;
+
     }
   }
 }
-.left{
+
+.left {
   border-radius: 5px 5px 5px 0;
   align-self: flex-start;
+  background-color: rgb(208, 203, 203);
 
 }
-.right{
+
+.right {
   border-radius: 5px 5px 0 5px;
   align-self: flex-end;
+  background-color: rgb(1, 169, 158);
+  color: #f8f8f8;
 }
 
-@media only screen and(max-width: 556px),(max-height: 597px) {
-  .Message{
+@media only screen and(max-width: 556px), (max-height: 597px) {
+  .Message {
     width: 261px;
   }
 }
-@media only screen and (max-width: 405px){
-  .Message{
+
+@media only screen and (max-width: 405px) {
+  .Message {
     width: 239px;
   }
 }

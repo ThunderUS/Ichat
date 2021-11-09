@@ -12,7 +12,11 @@ import Invite from "../moduls/IChat/Invite";
 import axios from "axios";
 import HOST from "../../confige/config";
 import socket from "../../confige/Socket";
-
+import useSound from 'use-sound';
+// @ts-ignore
+import boopSfx from '../../images/send.mp3';
+// @ts-ignore
+import receive from "../../images/resive.mp3"
 
 function IChat() {
     const history = useHistory();
@@ -25,8 +29,9 @@ function IChat() {
         date: ""
     })
     const [invite, setInvite] = useState<boolean>(false);
-    const [update, setUpdate] = useState<boolean>(false)
-
+    const [update, setUpdate] = useState<boolean>(false);
+    const [sent] = useSound(boopSfx);
+    const [rec] = useSound(receive);
     if (store.id === 0) {
         history.push("/");
     }
@@ -34,9 +39,11 @@ function IChat() {
     socket.on("receive-message", (dataMessage, userSenderRoomID) => {
         if (userSenderRoomID === store.roomID) {
             setMessage(dataMessage);
+            rec();
         } else {
             setNewMessageDifferentRoom(prevState => {
                 return [...prevState, userSenderRoomID];
+                rec();
             })
             setUpdate(prevState => !prevState);
         }
@@ -63,7 +70,7 @@ function IChat() {
         }} func={setInvite}/>}
         <div className={"IChat"}>
             <div className="IChat_left">
-                <LoginInfo invite={setInvite} name={store.name} surname={store.surname}/>
+                <LoginInfo invite={setInvite} login={store.login}/>
                 <Rooms newMessage={newMessageDifferentRoom}
                        setNewMessage={setNewMessageDifferentRoom}
                        update={update}
@@ -72,7 +79,7 @@ function IChat() {
             <div className="IChat_right">
                 <Chats message={message}/>
                 <Sender onClick={(value) => {
-                    if (store.roomID !== 0) {
+                    if (store.roomID !== 0 && value.trim() !== "") {
                         setMessage({
                             id: 0,
                             login: store.login,
@@ -80,7 +87,7 @@ function IChat() {
                             date: ""
                         })
                         socket.emit("send-message", value, store.login, store.roomID)
-
+                        sent();
 
                     }
 

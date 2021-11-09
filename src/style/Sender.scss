@@ -2,7 +2,7 @@
   margin: 5px;
   width: 517px;
   height: 70px;
-  background-color: #c4c4c4;
+  background-color: rgba(196, 196, 196, 0.58);
   border: 1px solid black;
   border-radius: 10px;
   padding: 5px;
@@ -31,15 +31,16 @@
   &_button {
     width: 50px;
     height: 50px;
-    border: 1px solid black;
+    border: 1px solid rgb(1, 169, 158);
     border-radius: 25px;
-    background-color: #f8f8f8;
+    background-color: rgb(1, 169, 158);
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 37px;
     font-weight: bold;
     padding-bottom: 6px;
+    color: white;;
 
     &:hover {
       cursor: pointer;
