@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import "../../style/IChat.scss"
 import Chats from "../moduls/IChat/Chats";
 import LoginInfo from "../moduls/IChat/LoginInfo";
@@ -30,24 +30,32 @@ function IChat() {
     })
     const [invite, setInvite] = useState<boolean>(false);
     const [update, setUpdate] = useState<boolean>(false);
-    const [sent] = useSound(boopSfx);
-    const [rec] = useSound(receive);
+    const [sentMessageSound] = useSound(boopSfx);
+    const [receiveMessageSound] = useSound(receive);
     if (store.id === 0) {
         history.push("/");
     }
+    useEffect(() => {
+        if (store.login !== "") {
+            socket.emit("online", store.login);
+        }
+
+    }, [store.login])
 
     socket.on("receive-message", (dataMessage, userSenderRoomID) => {
         if (userSenderRoomID === store.roomID) {
             setMessage(dataMessage);
-            rec();
+            receiveMessageSound();
         } else {
             setNewMessageDifferentRoom(prevState => {
+                receiveMessageSound();
                 return [...prevState, userSenderRoomID];
-                rec();
+
             })
             setUpdate(prevState => !prevState);
         }
     })
+
     return (<>
         {invite && <Invite onClick={(value) => {
             axios.get(HOST + "/user/list").then(res => {
@@ -87,7 +95,7 @@ function IChat() {
                             date: ""
                         })
                         socket.emit("send-message", value, store.login, store.roomID)
-                        sent();
+                        sentMessageSound();
 
                     }
 

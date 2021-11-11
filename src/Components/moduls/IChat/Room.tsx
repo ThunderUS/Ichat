@@ -1,6 +1,7 @@
-import React, {Dispatch, SetStateAction} from 'react';
+import React, {Dispatch, SetStateAction, useState} from 'react';
 import "../../../style/Room.scss"
 import {useDispatch} from "react-redux";
+import socket from "../../../confige/Socket";
 
 type TRoomInfo = {
     id: number,
@@ -17,6 +18,20 @@ interface IRoom {
 function Room(props: IRoom) {
     const {roomInfo, currentUserNickname} = props;
     const dispatch = useDispatch();
+    const [isOnLine, setIsOnline] = useState<boolean>(false);
+
+    socket.on("new-online", (login) => {
+        if (getUserName(roomInfo, currentUserNickname) === login) {
+            setIsOnline(true);
+        }
+    })
+
+    socket.on("disconnect-user", (login) => {
+        console.log("if ", getUserName(roomInfo, currentUserNickname) === login)
+        if (getUserName(roomInfo, currentUserNickname) === login) {
+            setIsOnline(false);
+        }
+    })
 
     function getUserName(roomInfo: TRoomInfo, userLogin: string) {
         return roomInfo.users
@@ -40,8 +55,10 @@ function Room(props: IRoom) {
             })
         }}
              className={"Room"}>
-            <span>{getUserName(roomInfo, currentUserNickname)}</span>
-            {props.newMessage && <span>!NEW!</span>}
+            {isOnLine ? <span className={"Room_online"}>&#10041;</span> : null}
+            <span> {getUserName(roomInfo, currentUserNickname)}</span>
+            {props.newMessage && <span className={"Room_new"}>!NEW!</span>}
+
         </div>
     );
 }

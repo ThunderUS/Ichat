@@ -9,6 +9,8 @@ import pool from "./server/db.js";
 
 let DBRowMessage = {};
 let userSenderRoomID = 0;
+const onlineUsers = new Map();
+
 const PORT = process.env.PORT || 8080;
 const app = express();
 const webServer = createServer(app);
@@ -35,9 +37,9 @@ try {
   app.post("/chats", userControl.getChats);
   app.post("/invite", userControl.setRoom);
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "build", "index.html"));
-  })
+  // app.get("*", (req, res) => {
+  //   res.sendFile(path.join(__dirname, "build", "index.html"));
+  // })
 } catch (e) {
   Log.setLog(`Error in app_post/app_get: ${e}`);
 }
@@ -45,6 +47,18 @@ try {
 try {
   io.on("connection", socket => {
     Log.setLog(`User connected: ${socket.id}`);
+
+    socket.on("online", (login) => {
+      onlineUsers.set(socket.id, login);
+      console.log(onlineUsers);
+      socket.broadcast.emit("new-online", login);
+    })
+
+    socket.on("disconnect", () => {
+      socket.broadcast.emit("disconnect-user", onlineUsers.get(socket.id));
+      onlineUsers.delete(socket.id);
+    })
+
     socket.on("send-message", async (values, login, id) => {
       const nowDate = new Date();
       const todayTemplate = `${nowDate
@@ -55,18 +69,22 @@ try {
         .getMinutes()}:${nowDate
         .getSeconds()}`;
 
-      const tableName = `INSERT INTO chats_${id} (login, message, date)
-                         values ($1, $2, $3)
-                         RETURNING * `;
-      const dbData = await pool.query(tableName, [login, values, todayTemplate]);
+      const sqlForTable = `INSERT INTO chats_${id} (login, message, date)
+                           values ($1, $2, $3)
+                           RETURNING * `;
+      const dbData = await pool.query(sqlForTable, [login, values, todayTemplate]);
       DBRowMessage = dbData.rows[0];
       userSenderRoomID = id;
       socket.to(userSenderRoomID).emit("receive-message", DBRowMessage, userSenderRoomID);
     });
+
     socket.on("join-room", (roomID) => {
       socket.join(roomID);
+
     });
+
   })
+
 
 } catch (e) {
   Log.setLog(`Error in Socket: ${e}`)
