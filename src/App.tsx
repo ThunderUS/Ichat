@@ -1,11 +1,11 @@
-import React from 'react';
-import LoginForm from "./Components/Pages/LoginForm";
-import IChat from "./Components/Pages/IChat";
+import React, {Suspense} from 'react';
 import "./style/App.scss"
+import LoginForm from "./Components/Pages/LoginForm";
 import {BrowserRouter, Route} from "react-router-dom";
-import RegistrationForm from "./Components/Pages/RegistrationForm";
 import {createStore} from "redux";
 import {Provider} from "react-redux";
+//import IChat from "./Components/Pages/IChat";
+//import RegistrationForm from "./Components/Pages/RegistrationForm";
 
 const defaultState = {
     id: 0,
@@ -20,7 +20,8 @@ const defaultState = {
         date: ""
     },
 }
-
+const IChat = React.lazy(() => import("./Components/Pages/IChat"));
+const RegistrationForm = React.lazy(() => import("./Components/Pages/RegistrationForm"));
 
 const reducerUserInformation = (state = defaultState, action: any) => {
     switch (action.type) {
@@ -59,13 +60,15 @@ const store = createStore(reducerUserInformation);
 function App() {
     return (
         <BrowserRouter>
-            <Provider store={store}>
-                <div className="BGPicture">
-                    <Route path={"/"} exact component={LoginForm}/>
-                    <Route path={"/chat"} exact component={IChat}/>
-                    <Route path={"/reg"} exact component={RegistrationForm}/>
-                </div>
-            </Provider>
+            <Suspense fallback={""}>
+                <Provider store={store}>
+                    <div className="BGPicture">
+                        <Route path={"/"} exact component={LoginForm}/>
+                        <Route path={"/chat"} exact component={IChat}/>
+                        <Route path={"/reg"} exact component={RegistrationForm}/>
+                    </div>
+                </Provider>
+            </Suspense>
         </BrowserRouter>
     );
 }

@@ -14,13 +14,13 @@ const onlineUsers = new Map();
 const PORT = process.env.PORT || 8080;
 const app = express();
 const webServer = createServer(app);
+const __dirname = path.resolve();
 const io = new Server(webServer, {
   cors: {
     origin: "*",
     methods: ["GET", "POST"]
   }
 });
-const __dirname = path.resolve();
 
 app.use(cors());
 app.use(express.json());
@@ -29,13 +29,19 @@ app.use(express.static(path.join(__dirname, "build")));
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
 
 try {
-
   app.post("/login", userControl.loginUser);
   app.get("/user/list", userControl.getLoginsUsers);
   app.post("/user", userControl.createUser);
   app.post("/rooms", userControl.getRooms);
   app.post("/chats", userControl.getChats);
   app.post("/invite", userControl.setRoom);
+  app.get("/users/online", (req, res) => {
+    const usersOnline = [];
+    for (const [, login] of onlineUsers.entries()) {
+      usersOnline.push(login);
+    }
+    res.json(usersOnline);
+  })
 
   // app.get("*", (req, res) => {
   //   res.sendFile(path.join(__dirname, "build", "index.html"));
@@ -46,15 +52,17 @@ try {
 
 try {
   io.on("connection", socket => {
-    Log.setLog(`User connected: ${socket.id}`);
-
+    console.log(`User connected: ${socket.id}`);
     socket.on("online", (login) => {
       onlineUsers.set(socket.id, login);
       console.log(onlineUsers);
-      socket.broadcast.emit("new-online", login);
+      for (const [, login] of onlineUsers.entries()) {
+        socket.broadcast.emit("new-online", login);
+      }
     })
 
     socket.on("disconnect", () => {
+      console.log(`User disconnect: ${socket.id}`)
       socket.broadcast.emit("disconnect-user", onlineUsers.get(socket.id));
       onlineUsers.delete(socket.id);
     })
@@ -68,7 +76,6 @@ try {
         .getHours()}:${nowDate
         .getMinutes()}:${nowDate
         .getSeconds()}`;
-
       const sqlForTable = `INSERT INTO chats_${id} (login, message, date)
                            values ($1, $2, $3)
                            RETURNING * `;
@@ -80,12 +87,8 @@ try {
 
     socket.on("join-room", (roomID) => {
       socket.join(roomID);
-
     });
-
   })
-
-
 } catch (e) {
   Log.setLog(`Error in Socket: ${e}`)
 }

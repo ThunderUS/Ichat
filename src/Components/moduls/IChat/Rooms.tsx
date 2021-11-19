@@ -5,7 +5,6 @@ import Room from "./Room";
 import HOST from "../../../confige/config";
 import socket from "../../../confige/Socket";
 
-
 interface IRooms {
     login: string,
     update: boolean,
@@ -23,6 +22,7 @@ function Rooms(props: IRooms) {
     useEffect(() => {
         getRooms(props.login).then(r => r);
     }, [props.login, props.update])
+
 
     async function getRooms(login: string) {
         await axios.post(HOST + "/rooms", {
@@ -46,7 +46,6 @@ function Rooms(props: IRooms) {
             {
                 arrayRoomsUser.map((el: TArrayRoomsUser) => {
                     socket.emit("join-room", el.id);
-
                     return <Room newMessage={props.newMessage.some(test => test === el.id)}
                                  key={el.id}
                                  roomInfo={el}

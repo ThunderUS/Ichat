@@ -1,7 +1,9 @@
-import React, {Dispatch, SetStateAction, useState} from 'react';
+import React, {Dispatch, SetStateAction, useEffect, useState} from 'react';
 import "../../../style/Room.scss"
 import {useDispatch} from "react-redux";
 import socket from "../../../confige/Socket";
+import axios from "axios";
+import HOST from "../../../confige/config";
 
 type TRoomInfo = {
     id: number,
@@ -19,7 +21,16 @@ function Room(props: IRoom) {
     const {roomInfo, currentUserNickname} = props;
     const dispatch = useDispatch();
     const [isOnLine, setIsOnline] = useState<boolean>(false);
-
+    const userRoom = getUserName(roomInfo, currentUserNickname);
+    useEffect(() => {
+        axios.get(HOST + "/users/online").then(data => {
+            data.data.forEach((e: string) => {
+                if (e === userRoom) {
+                    setIsOnline(true);
+                }
+            })
+        })
+    }, [userRoom])
     socket.on("new-online", (login) => {
         if (getUserName(roomInfo, currentUserNickname) === login) {
             setIsOnline(true);
@@ -27,7 +38,6 @@ function Room(props: IRoom) {
     })
 
     socket.on("disconnect-user", (login) => {
-        console.log("if ", getUserName(roomInfo, currentUserNickname) === login)
         if (getUserName(roomInfo, currentUserNickname) === login) {
             setIsOnline(false);
         }
@@ -55,6 +65,7 @@ function Room(props: IRoom) {
             })
         }}
              className={"Room"}>
+
             {isOnLine ? <span className={"Room_online"}>&#10041;</span> : null}
             <span> {getUserName(roomInfo, currentUserNickname)}</span>
             {props.newMessage && <span className={"Room_new"}>!NEW!</span>}
