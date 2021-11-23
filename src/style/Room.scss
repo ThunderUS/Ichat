@@ -1,27 +1,33 @@
 .Room {
   width: 185px;
   min-height: 50px;
-  border: 1px solid black;
+  //border: 1px solid black;
   border-radius: 5px;
-  background-color: #c4c4c4;
-  margin: 6px 0;
+  background-color: #ffffff;
+  margin: 3px 0;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
   position: relative;
 
   &_online {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #019401;
     position: absolute;
-    top: 8px;
-    left: 5px;
+    top: 2px;
+    left: 34px;
     color: rgb(4, 100, 89);
   }
 
   &_new {
     position: absolute;
-    top: 10px;
-    right: 5px;
+    width: 10px;
+    height: 10px;
+    background-color: rgb(7, 135, 247);
+    border-radius: 50%;
+    top: 37px;
+    left: 34px;
 
   }
 
@@ -32,9 +38,24 @@
   span {
     display: block;
     margin-top: 5px;
-    margin-left: 3px;
+    margin-left: 8px;
     margin-bottom: 5px;
+    font-size: 18px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 3px;
+    text-overflow: ellipsis;
   }
+}
+
+.Avatar {
+  margin-left: 3px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  justify-self: flex-start;
+  align-self: center;
 }
 
 @media only screen and (max-width: 770px), (max-height: 721px) {

@@ -4,6 +4,7 @@ import {useDispatch} from "react-redux";
 import socket from "../../../confige/Socket";
 import axios from "axios";
 import HOST from "../../../confige/config";
+import noAvatar from "../../../images/NoAvatar.jpg";
 
 type TRoomInfo = {
     id: number,
@@ -22,6 +23,7 @@ function Room(props: IRoom) {
     const dispatch = useDispatch();
     const [isOnLine, setIsOnline] = useState<boolean>(false);
     const userRoom = getUserName(roomInfo, currentUserNickname);
+
     useEffect(() => {
         axios.get(HOST + "/users/online").then(data => {
             data.data.forEach((e: string) => {
@@ -31,6 +33,7 @@ function Room(props: IRoom) {
             })
         })
     }, [userRoom])
+
     socket.on("new-online", (login) => {
         if (getUserName(roomInfo, currentUserNickname) === login) {
             setIsOnline(true);
@@ -65,10 +68,10 @@ function Room(props: IRoom) {
             })
         }}
              className={"Room"}>
-
-            {isOnLine ? <span className={"Room_online"}>&#10041;</span> : null}
+            <img src={noAvatar} className={"Avatar"} alt={"Avatar"}/>
+            {isOnLine ? <div className={"Room_online"}/> : null}
             <span> {getUserName(roomInfo, currentUserNickname)}</span>
-            {props.newMessage && <span className={"Room_new"}>!NEW!</span>}
+            {props.newMessage && <div className={"Room_new"}/>}
 
         </div>
     );
