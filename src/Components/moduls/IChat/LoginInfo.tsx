@@ -1,5 +1,6 @@
 import React, {Dispatch, SetStateAction} from 'react';
 import "../../../style/LoginInfo.scss"
+import noAvatar from "../../../images/NoAvatar.jpg";
 
 interface ILoginInfo {
     login: string,
@@ -9,10 +10,13 @@ interface ILoginInfo {
 function LoginInfo(props: ILoginInfo) {
     return (
         <div className={"LoginInfo"}>
-            <span className={"LoginInfo_nickname"}>{props.login}</span>
-            <div onClick={() => {
-                props.invite(true);
-            }} className={"LoginInfo_create"}>+
+            <img src={noAvatar} alt={"Avatar image"}/>
+            <div className={"LoginInfo_wrapper-login"}>
+                <span className={"LoginInfo_nickname"}>{props.login}</span>
+                <div onClick={() => {
+                    props.invite(true);
+                }} className={"LoginInfo_create"}>+
+                </div>
             </div>
         </div>
     );

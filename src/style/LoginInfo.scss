@@ -2,16 +2,25 @@
   margin: 5px;
   width: 209px;
   height: 110px;
+  padding: 5px;
   border: 1px solid black;
   border-radius: 10px;
-  background-color: #c4c4c4;
+  background-color: #ffffff;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: space-between;
 
-  span {
-    font-size: 30px;
+
+  img {
+    width: 50%;
+    height: 100%;
+    max-width: 98px;
+    max-height: 98px;
+    border-radius: 10%;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   &_create {
@@ -32,6 +41,17 @@
       box-shadow: 0 0 5px 2px;
     }
   }
+}
+
+.LoginInfo_wrapper-login {
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.LoginInfo_nickname {
+  font-size: 25px;
 }
 
 @media only screen and (max-width: 770px), (max-height: 721px) {
