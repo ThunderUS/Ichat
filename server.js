@@ -43,9 +43,9 @@ try {
     res.json(usersOnline);
   })
 
-  // app.get("*", (req, res) => {
-  //   res.sendFile(path.join(__dirname, "build", "index.html"));
-  // })
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "build", "index.html"));
+  })
 } catch (e) {
   Log.setLog(`Error in app_post/app_get: ${e}`);
 }
