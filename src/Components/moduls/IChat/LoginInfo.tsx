@@ -10,7 +10,7 @@ interface ILoginInfo {
 function LoginInfo(props: ILoginInfo) {
     return (
         <div className={"LoginInfo"}>
-            <img src={noAvatar} alt={"Avatar image"}/>
+            <img src={noAvatar} alt={"Avatar"}/>
             <div className={"LoginInfo_wrapper-login"}>
                 <span className={"LoginInfo_nickname"}>{props.login}</span>
                 <div onClick={() => {
