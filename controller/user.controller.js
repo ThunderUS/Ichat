@@ -1,5 +1,6 @@
 import pool from "../server/db.js";
 import Log from "../server/log.js"
+import path from "path";
 
 
 class UserController {
@@ -83,6 +84,19 @@ class UserController {
     } catch (e) {
       res.json(e)
       Log.setLog(`error in getChats: ${e}`);
+    }
+  }
+
+  async uploadAvatar(req, res) {
+    try {
+      const file = req.files.file;
+      const {login} = req.body;
+      const __dirname = path.resolve();
+      const avatarName = login + ".jpg";
+      file.mv(__dirname + "\\" + "avatars" + "\\" + avatarName)
+        .then(res.json(200));
+    } catch (e) {
+      console.log(e)
     }
   }
 

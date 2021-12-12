@@ -53,6 +53,7 @@ function Room(props: IRoom) {
             .join("");
     }
 
+    const avatar = `${HOST}/${getUserName(roomInfo, currentUserNickname)}.jpg`;
     return (
         <div onClick={() => {
             dispatch({
@@ -68,7 +69,10 @@ function Room(props: IRoom) {
             })
         }}
              className={"Room"}>
-            <img src={noAvatar} className={"Avatar"} alt={"Avatar"}/>
+            <img src={avatar} onError={(e) => {
+                console.log(e)
+                e.currentTarget.src = noAvatar;
+            }} alt={"Avatar"} className={"Avatar"}/>
             {isOnLine ? <div className={"Room_online"}/> : null}
             <span> {getUserName(roomInfo, currentUserNickname)}</span>
             {props.newMessage && <div className={"Room_new"}/>}

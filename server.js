@@ -6,6 +6,9 @@ import cors from "cors";
 import userControl from "./controller/user.controller.js"
 import Log from "./server/log.js";
 import pool from "./server/db.js";
+import fileupload from "express-fileupload";
+import * as fs from "fs";
+
 
 let DBRowMessage = {};
 let userSenderRoomID = 0;
@@ -21,31 +24,47 @@ const io = new Server(webServer, {
     methods: ["GET", "POST"]
   }
 });
+const avatars = (login) => {
+  const arrAvatars = fs.readdirSync(__dirname + "\\" + "avatars", {}).map((el) => {
+    return el.split('.');
+  }).flat().filter((el) => el !== "jpg");
+  return arrAvatars.includes(login);
+}
 
 app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname))
 app.use(express.static(path.join(__dirname, "build")));
+app.use(express.static(path.join(__dirname, "avatars")));
+app.use(fileupload({
+  limits: {fileSize: 5 * 1024 * 1024},
+}));
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
 
 try {
+
   app.post("/login", userControl.loginUser);
   app.get("/user/list", userControl.getLoginsUsers);
   app.post("/user", userControl.createUser);
   app.post("/rooms", userControl.getRooms);
   app.post("/chats", userControl.getChats);
   app.post("/invite", userControl.setRoom);
+  app.get("/isavatar", (req, res) => {
+    const {login} = req.query;
+    res.json(avatars(login));
+  })
   app.get("/users/online", (req, res) => {
     const usersOnline = [];
     for (const [, login] of onlineUsers.entries()) {
       usersOnline.push(login);
     }
     res.json(usersOnline);
-  })
+  });
+  app.post("/uploadavatar", userControl.uploadAvatar);
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "build", "index.html"));
-  })
+  // app.get("*", (req, res) => {
+  //   res.sendFile(path.join(__dirname, "build", "index.html"));
+  // })
 } catch (e) {
   Log.setLog(`Error in app_post/app_get: ${e}`);
 }
