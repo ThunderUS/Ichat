@@ -91,6 +91,9 @@ class UserController {
     try {
       const file = req.files.file;
       const {login} = req.body;
+      if (login === "" || login === undefined) {
+        res.json(500);
+      }
       const __dirname = path.resolve();
       const avatarName = login + ".jpg";
       file.mv(__dirname + "\\" + "avatars" + "\\" + avatarName)
