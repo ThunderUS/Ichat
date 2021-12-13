@@ -23,6 +23,7 @@ function Room(props: IRoom) {
     const dispatch = useDispatch();
     const [isOnLine, setIsOnline] = useState<boolean>(false);
     const userRoom = getUserName(roomInfo, currentUserNickname);
+    const [isAvatar, setIsAvatar] = useState<boolean>(false);
 
     useEffect(() => {
         axios.get(HOST + "/users/online").then(data => {
@@ -33,6 +34,12 @@ function Room(props: IRoom) {
             })
         })
     }, [userRoom])
+    useEffect(() => {
+        axios.get(HOST + `/isavatar?login=${getUserName(roomInfo, currentUserNickname)}`)
+            .then((data) => {
+                setIsAvatar(data.data);
+            })
+    }, [currentUserNickname, roomInfo]);
 
     socket.on("new-online", (login) => {
         if (getUserName(roomInfo, currentUserNickname) === login) {
@@ -69,10 +76,7 @@ function Room(props: IRoom) {
             })
         }}
              className={"Room"}>
-            <img src={avatar} onError={(e) => {
-                console.log(e)
-                e.currentTarget.src = noAvatar;
-            }} alt={"Avatar"} className={"Avatar"}/>
+            <img src={isAvatar ? avatar : noAvatar} alt={"Avatar"} className={"Avatar"}/>
             {isOnLine ? <div className={"Room_online"}/> : null}
             <span> {getUserName(roomInfo, currentUserNickname)}</span>
             {props.newMessage && <div className={"Room_new"}/>}
