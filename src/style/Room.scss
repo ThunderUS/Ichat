@@ -33,7 +33,7 @@
 
   &:hover {
     cursor: pointer;
-    transform: scale(1.05);
+
   }
 
   span {
@@ -47,6 +47,16 @@
     overflow: hidden;
     padding: 3px;
     text-overflow: ellipsis;
+  }
+
+  &_call {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 }
 

@@ -1,6 +1,0 @@
-
-11_22_2021-18:58:8 Server start on 8080
-11_22_2021-18:58:44 Thunder has login in successfully!!
-11_22_2021-19:36:46 Thunder has login in successfully!!
-11_22_2021-20:6:11 Test1 has login in successfully!!
-11_22_2021-20:16:57 Thunder has login in successfully!!

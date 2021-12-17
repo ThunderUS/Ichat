@@ -5,6 +5,7 @@ import socket from "../../../confige/Socket";
 import axios from "axios";
 import HOST from "../../../confige/config";
 import noAvatar from "../../../images/NoAvatar.jpg";
+import call from "../../../images/phone-call.png";
 
 type TRoomInfo = {
     id: number,
@@ -80,6 +81,11 @@ function Room(props: IRoom) {
             {isOnLine ? <div className={"Room_online"}/> : null}
             <span> {getUserName(roomInfo, currentUserNickname)}</span>
             {props.newMessage && <div className={"Room_new"}/>}
+            {isOnLine ? <img src={call} alt={"Call"} className={"Room_call"}
+                             onClick={event => {
+                                 event.stopPropagation();
+                             }}
+            /> : null}
 
         </div>
     );

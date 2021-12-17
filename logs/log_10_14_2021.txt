@@ -1,4 +1,0 @@
-
-10_14_2021-19:54:46 Server start on 8080
-10_14_2021-20:0:59 Thunder has logined in successfully!!
-10_14_2021-20:3:34 Server start on 8080
